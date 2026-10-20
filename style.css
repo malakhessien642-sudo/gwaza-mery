@@ -1,59 +1,39 @@
 
-/* ========================================
-   JAWAZET MERY - MAIN STYLE
-   Theme: Black & Neon Red
-======================================== */
-
-/* 1. إعدادات عامة */
-
 :root {
-    --bg: #080808;
-    --bg-light: #111111;
-    --card: #151515;
+    --bg: #10080b;
+    --surface: #1b1015;
+    --surface-light: #26151c;
     --red: #ff1744;
-    --red-dark: #a90024;
-    --white: #ffffff;
-    --gray: #b8b8b8;
-    --border: rgba(255, 23, 68, 0.3);
-    --glow: 0 0 15px rgba(255, 23, 68, 0.4);
+    --red-dark: #c90032;
+    --white: #fff7fa;
+    --muted: #c4b2ba;
+    --border: #48202e;
 }
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 90px;
+    scroll-padding-top: 85px;
 }
 
 body {
-    font-family: Tahoma, Arial, sans-serif;
     background: var(--bg);
     color: var(--white);
+    font-family: Tahoma, Arial, sans-serif;
     line-height: 1.8;
-    overflow-x: hidden;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(
-            circle at 10% 15%,
-            rgba(255, 23, 68, 0.08),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 80%,
-            rgba(255, 23, 68, 0.06),
-            transparent 30%
-        );
-    pointer-events: none;
-    z-index: -1;
+button, a {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
 }
 
 a {
@@ -61,53 +41,33 @@ a {
     text-decoration: none;
 }
 
-button,
-input,
-textarea,
-select {
-    font: inherit;
-}
-
-button,
-a {
-    -webkit-tap-highlight-color: transparent;
-}
-
-button {
-    cursor: pointer;
-}
-
-button:focus-visible,
-a:focus-visible {
-    outline: 2px solid var(--red);
+button:focus-visible, a:focus-visible {
+    outline: 3px solid white;
     outline-offset: 4px;
 }
-
-/* 2. شريط التنقل */
 
 .navbar {
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
     padding: 14px 7%;
-    background: rgba(8, 8, 8, 0.94);
+    background: rgba(16, 8, 11, 0.96);
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(12px);
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 900;
+    font-size: 22px;
+    font-weight: bold;
     white-space: nowrap;
 }
 
-.logo span {
+.logo span, .hero h1 span {
     color: var(--red);
-    text-shadow: 0 0 12px rgba(255, 23, 68, 0.7);
 }
 
 .nav-links {
@@ -117,322 +77,259 @@ a:focus-visible {
 }
 
 .nav-links a {
-    color: #dddddd;
-    font-size: 0.95rem;
-    transition: 0.25s;
+    color: var(--muted);
+    transition: color 0.2s;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
+.nav-links a:hover {
     color: var(--red);
 }
 
 .menu-toggle {
     display: none;
     border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--card);
-    color: var(--white);
+    border-radius: 10px;
+    background: var(--surface);
+    color: white;
     padding: 5px 12px;
-    font-size: 1.5rem;
+    font-size: 23px;
 }
 
-/* 3. الأزرار */
+.hero {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    padding: 75px 8%;
+    background:
+        radial-gradient(ellipse at 80% 25%, #571024 0%, transparent 42%),
+        radial-gradient(ellipse at 15% 90%, #32101e 0%, transparent 35%),
+        var(--bg);
+}
+
+.hero-content {
+    max-width: 780px;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: #ff8ba3;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 7vw, 68px);
+    line-height: 1.35;
+    margin: 15px 0;
+}
+
+.hero-content > p:not(.eyebrow) {
+    max-width: 650px;
+    color: var(--muted);
+    font-size: 18px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
 
 .btn {
     display: inline-flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    min-height: 46px;
-    padding: 11px 23px;
     border: 1px solid transparent;
-    border-radius: 10px;
+    border-radius: 12px;
+    padding: 11px 19px;
     font-weight: bold;
     text-align: center;
-    transition:
-        transform 0.25s,
-        box-shadow 0.25s,
-        background 0.25s;
+    transition: transform 0.2s, background 0.2s;
 }
 
 .btn:hover {
-    transform: translateY(-3px);
-}
-
-.btn:active {
-    transform: scale(0.97);
+    transform: translateY(-2px);
 }
 
 .btn-primary {
     color: white;
-    background: linear-gradient(135deg, #ff1744, #b00025);
-    box-shadow: var(--glow);
+    background: var(--red-dark);
+    border-color: var(--red);
 }
 
 .btn-primary:hover {
-    box-shadow: 0 0 25px rgba(255, 23, 68, 0.65);
+    background: var(--red);
 }
 
 .btn-secondary {
     color: white;
     background: transparent;
-    border-color: var(--red);
+    border-color: #a63b55;
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 23, 68, 0.12);
-    box-shadow: var(--glow);
-}
-
-/* 4. الصفحة الرئيسية */
-
-.hero {
-    min-height: 650px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 90px 7%;
-    text-align: center;
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(255, 23, 68, 0.12),
-            transparent 65%
-        );
-}
-
-.hero-content {
-    max-width: 850px;
-    animation: fadeUp 0.8s ease both;
-}
-
-.eyebrow {
-    color: var(--red);
-    font-size: 0.9rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-}
-
-.hero h1 {
-    font-size: clamp(2.7rem, 7vw, 5rem);
-    line-height: 1.3;
-    margin-bottom: 20px;
-}
-
-.hero h1 span {
-    color: var(--red);
-    text-shadow:
-        0 0 10px rgba(255, 23, 68, 0.8),
-        0 0 35px rgba(255, 23, 68, 0.3);
-}
-
-.hero-description {
-    max-width: 650px;
-    margin: 0 auto 30px;
-    color: var(--gray);
-    font-size: 1.1rem;
-}
-
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
+    background: var(--surface-light);
 }
 
 .hero-stats {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    gap: 45px;
-    margin-top: 55px;
+    gap: 30px;
+    margin-top: 42px;
 }
 
-.stat {
+.hero-stats div {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    color: var(--gray);
+    gap: 4px;
 }
 
-.stat strong {
-    font-size: 2rem;
-    margin-bottom: 5px;
+.hero-stats strong {
+    font-size: 25px;
 }
 
-/* 5. الأقسام العامة */
+.hero-stats span {
+    color: var(--muted);
+    font-size: 13px;
+}
 
 .section {
-    padding: 85px 7%;
-    scroll-margin-top: 80px;
+    padding: 75px 7%;
 }
 
 .section-dark {
-    background: linear-gradient(
-        180deg,
-        #101010,
-        #0b0b0b
-    );
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    background: #160b10;
+    border-block: 1px solid #28121b;
 }
 
 .section-heading {
     max-width: 750px;
-    margin: 0 auto 45px;
+    margin: 0 auto 35px;
     text-align: center;
 }
 
 .section-heading h2 {
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    margin-bottom: 10px;
+    font-size: clamp(26px, 4vw, 38px);
+    margin: 8px 0;
 }
 
-.section-heading > p:last-child {
-    color: var(--gray);
+.section-heading > p {
+    color: var(--muted);
 }
-
-/* 6. كروت الألعاب والاختبارات */
 
 .games-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 25px;
+    gap: 22px;
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .game-card {
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 28px;
-    min-height: 330px;
-    background: linear-gradient(145deg, #191919, #101010);
+    gap: 13px;
+    padding: 26px;
+    background: linear-gradient(145deg, var(--surface-light), var(--surface));
     border: 1px solid var(--border);
     border-radius: 18px;
-    overflow: hidden;
-    transition:
-        transform 0.3s,
-        border-color 0.3s,
-        box-shadow 0.3s;
-}
-
-.game-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        var(--red),
-        transparent
-    );
-    transform: scaleX(0);
-    transition: transform 0.3s;
+    transition: transform 0.2s, border-color 0.2s;
 }
 
 .game-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-5px);
     border-color: var(--red);
-    box-shadow: 0 12px 35px rgba(255, 23, 68, 0.12);
-}
-
-.game-card:hover::before {
-    transform: scaleX(1);
 }
 
 .card-icon {
     display: grid;
     place-items: center;
-    width: 65px;
-    height: 65px;
-    margin-bottom: 20px;
-    border: 1px solid var(--border);
+    width: 60px;
+    height: 60px;
     border-radius: 16px;
-    background: rgba(255, 23, 68, 0.08);
-    font-size: 2rem;
-    box-shadow: var(--glow);
+    background: #451022;
+    font-size: 30px;
 }
 
 .game-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
+    font-size: 21px;
 }
 
 .game-card p {
-    flex: 1;
-    color: var(--gray);
-    margin-bottom: 24px;
+    color: var(--muted);
+    flex-grow: 1;
 }
 
 .game-card .btn {
     width: 100%;
+    margin-top: 8px;
 }
 
-/* 7. منطقة تشغيل اللعبة */
-
 .play-section {
+    min-height: 430px;
     background:
-        radial-gradient(
-            ellipse at top,
-            rgba(255, 23, 68, 0.07),
-            transparent 70%
-        );
+        radial-gradient(ellipse at 50% 0%, #32101e 0%, transparent 65%),
+        var(--bg);
 }
 
 .game-container {
-    max-width: 850px;
-    min-height: 260px;
+    width: 100%;
+    max-width: 800px;
+    min-height: 200px;
     margin: 0 auto;
-    padding: 30px;
-    background: var(--card);
+    padding: 25px;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 20px;
-    box-shadow: 0 0 30px rgba(255, 23, 68, 0.06);
 }
 
 .empty-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 220px;
+    padding: 25px 10px;
     text-align: center;
 }
 
 .empty-icon {
-    font-size: 3.5rem;
-    margin-bottom: 12px;
-}
-
-.empty-state h3 {
-    margin-bottom: 8px;
+    font-size: 45px;
+    margin-bottom: 10px;
 }
 
 .empty-state p {
-    color: var(--gray);
-    margin-bottom: 20px;
+    margin: 8px 0 20px;
+    color: var(--muted);
 }
 
-/* عناصر الأسئلة التي سيستخدمها JavaScript */
-
-.question-number {
-    color: var(--red);
-    font-weight: bold;
-    margin-bottom: 12px;
+.question-meta {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+    color: #ff9ab0;
+    font-size: 14px;
 }
 
-.question-text {
-    font-size: 1.45rem;
-    margin-bottom: 25px;
+.progress-track {
+    height: 7px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    background: #39212b;
+    border-radius: 20px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--red);
+    transition: width 0.25s;
+}
+
+.question-title {
+    font-size: clamp(20px, 4vw, 26px);
     line-height: 1.7;
+    margin-bottom: 22px;
 }
 
 .answers-list {
@@ -442,224 +339,139 @@ a:focus-visible {
 
 .answer-btn {
     width: 100%;
-    padding: 14px 18px;
-    color: white;
+    padding: 14px 16px;
+    color: var(--white);
     text-align: right;
-    background: #202020;
-    border: 1px solid #383838;
+    background: #24141b;
+    border: 1px solid #583040;
     border-radius: 12px;
-    transition: 0.25s;
+    transition: background 0.2s, border-color 0.2s;
 }
 
-.answer-btn:hover {
-    background: rgba(255, 23, 68, 0.1);
+.answer-btn:hover:not(:disabled) {
+    background: #401625;
     border-color: var(--red);
-    transform: translateX(-3px);
 }
 
-.answer-btn.selected {
-    background: rgba(255, 23, 68, 0.18);
-    border-color: var(--red);
-    box-shadow: var(--glow);
+.answer-btn:disabled {
+    cursor: default;
+    opacity: 0.9;
 }
 
 .answer-btn.correct {
-    border-color: #35d07f;
-    background: rgba(53, 208, 127, 0.12);
+    border-color: #31d58a;
+    background: #103b2b;
 }
 
 .answer-btn.wrong {
-    border-color: #ff5252;
-    background: rgba(255, 82, 82, 0.12);
+    border-color: var(--red);
+    background: #4a1424;
 }
 
-.game-controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 12px;
-    margin-top: 25px;
-}
-
-.game-progress {
-    width: 100%;
-    height: 8px;
-    margin-bottom: 22px;
-    overflow: hidden;
-    background: #303030;
-    border-radius: 20px;
-}
-
-.game-progress-bar {
-    height: 100%;
-    width: 0;
-    background: linear-gradient(90deg, #a90024, #ff1744);
-    border-radius: inherit;
-    transition: width 0.35s ease;
-}
-
-.feedback-message {
+.feedback {
     margin-top: 18px;
-    padding: 12px;
+    padding: 13px;
+    background: #2a1720;
     border-radius: 10px;
-    background: rgba(255, 23, 68, 0.08);
-    border: 1px solid var(--border);
 }
 
-/* 8. النتائج */
-
-.result-section {
-    padding-top: 30px;
+.feedback p {
+    margin-bottom: 12px;
+    color: var(--muted);
 }
 
-.result-container {
-    max-width: 850px;
-    margin: auto;
-    padding: 35px;
+.quiz-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.score-label {
+    color: #ffb5c5;
+    font-weight: bold;
+}
+
+.result-card {
     text-align: center;
-    background: linear-gradient(145deg, #1b1013, #101010);
-    border: 1px solid var(--red);
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(255, 23, 68, 0.14);
-    animation: fadeUp 0.5s ease both;
+    padding: 15px 5px;
 }
 
 .result-emoji {
-    font-size: 4rem;
-    margin-bottom: 15px;
+    font-size: 65px;
 }
 
-.result-container h2 {
-    color: var(--red);
-    font-size: 2rem;
-    margin-bottom: 15px;
+.result-card h3 {
+    font-size: 28px;
+    margin: 8px 0;
 }
 
-.result-container p {
-    color: #dddddd;
-    margin-bottom: 20px;
+.result-card p {
+    color: var(--muted);
+    margin: 10px auto 22px;
+    max-width: 560px;
 }
 
 .result-score {
     display: inline-block;
-    margin: 10px 0 25px;
-    padding: 10px 22px;
-    color: white;
-    background: rgba(255, 23, 68, 0.13);
+    margin: 12px 0;
+    padding: 8px 18px;
+    background: #401625;
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 30px;
     font-weight: bold;
 }
 
-.result-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 25px;
-}
-
-/* 9. محكمة الجوازات */
-
-.court-section {
-    background: #0d0d0d;
-}
-
 .court-box {
-    max-width: 750px;
+    max-width: 650px;
     margin: auto;
-    padding: 35px;
+    padding: 30px;
     text-align: center;
-    background: linear-gradient(145deg, #1a1516, #111111);
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 20px;
 }
 
 .court-icon {
-    font-size: 4rem;
-    margin-bottom: 15px;
-    filter: drop-shadow(0 0 12px rgba(255, 23, 68, 0.4));
+    font-size: 55px;
 }
 
 .court-box h3 {
-    font-size: 1.6rem;
-    margin-bottom: 12px;
-}
-
-.court-box p {
-    color: var(--gray);
-    margin-bottom: 25px;
-}
-
-/* 10. الفوتر */
-
-.footer {
-    padding: 45px 7%;
-    text-align: center;
-    background: #050505;
-    border-top: 1px solid var(--border);
-}
-
-.footer .logo {
-    display: inline-block;
-    margin-bottom: 15px;
-}
-
-.footer p {
-    color: var(--gray);
     margin: 8px 0;
 }
 
-.copyright {
-    font-size: 0.85rem;
+.court-box p {
+    color: var(--muted);
+    margin: 10px 0 20px;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 35px 6%;
+    text-align: center;
+    background: #0a0507;
+    border-top: 1px solid var(--border);
+}
+
+.footer p {
+    color: var(--muted);
+    font-size: 14px;
 }
 
 .back-to-top {
-    display: inline-block;
-    margin-top: 18px;
-    color: var(--red);
-    transition: 0.25s;
+    color: #ff8ba3;
 }
-
-.back-to-top:hover {
-    text-shadow: 0 0 12px var(--red);
-}
-
-/* 11. عناصر مساعدة */
 
 [hidden] {
     display: none !important;
 }
 
-.fade-in {
-    animation: fadeUp 0.45s ease both;
-}
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(18px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes pulseGlow {
-    0%, 100% {
-        box-shadow: 0 0 8px rgba(255, 23, 68, 0.25);
-    }
-
-    50% {
-        box-shadow: 0 0 22px rgba(255, 23, 68, 0.55);
-    }
-}
-
-/* 12. الشاشات المتوسطة */
-
-@media (max-width: 950px) {
+@media (max-width: 850px) {
     .games-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -668,38 +480,22 @@ a:focus-visible {
         padding-inline: 5%;
     }
 
-    .nav-links {
-        gap: 15px;
-    }
-}
-
-/* 13. الموبايل */
-
-@media (max-width: 650px) {
-    html {
-        scroll-padding-top: 75px;
-    }
-
-    .navbar {
-        padding: 12px 5%;
-        flex-wrap: wrap;
-    }
-
-    .logo {
-        font-size: 1.25rem;
-    }
-
     .menu-toggle {
         display: block;
     }
 
     .nav-links {
         display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
         flex-direction: column;
         align-items: stretch;
         gap: 0;
-        width: 100%;
-        padding-top: 10px;
+        padding: 10px 5%;
+        background: #10080b;
+        border-bottom: 1px solid var(--border);
     }
 
     .nav-links.open {
@@ -708,104 +504,40 @@ a:focus-visible {
 
     .nav-links a {
         padding: 12px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
+}
 
+@media (max-width: 560px) {
     .hero {
         min-height: auto;
-        padding: 80px 5%;
+        padding: 65px 6%;
     }
 
-    .hero h1 {
-        font-size: 2.6rem;
-    }
-
-    .hero-description {
-        font-size: 1rem;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-    }
-
-    .hero-buttons .btn {
-        width: 100%;
+    .hero-content > p:not(.eyebrow) {
+        font-size: 16px;
     }
 
     .hero-stats {
-        gap: 25px;
-        margin-top: 40px;
-    }
-
-    .stat strong {
-        font-size: 1.7rem;
+        gap: 20px;
     }
 
     .section {
-        padding: 60px 5%;
-    }
-
-    .section-heading {
-        margin-bottom: 30px;
+        padding: 55px 5%;
     }
 
     .games-grid {
         grid-template-columns: 1fr;
-        gap: 18px;
     }
 
     .game-card {
-        min-height: 290px;
-        padding: 24px;
+        padding: 22px;
     }
 
     .game-container {
-        padding: 20px;
+        padding: 18px 14px;
     }
 
-    .question-text {
-        font-size: 1.2rem;
-    }
-
-    .game-controls {
-        flex-direction: column;
-    }
-
-    .game-controls .btn {
+    .quiz-actions .btn {
         width: 100%;
-    }
-
-    .court-box,
-    .result-container {
-        padding: 25px 18px;
-    }
-
-    .result-container h2 {
-        font-size: 1.6rem;
-    }
-
-    .result-actions {
-        flex-direction: column;
-    }
-
-    .result-actions .btn {
-        width: 100%;
-    }
-
-    .footer {
-        padding: 35px 5%;
-    }
-}
-
-/* 14. تقليل الحركة لمن يفضل ذلك */
-
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
     }
 }
