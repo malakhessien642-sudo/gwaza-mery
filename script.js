@@ -1,640 +1,535 @@
 
-/* ==========================================
-   JAWAZET MERY - INTERACTIVE GAME ENGINE
-========================================== */
-
 "use strict";
 
-// ==========================================
-// 1. عناصر الصفحة
-// ==========================================
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const gameContainer = document.getElementById("gameContainer");
+    const playTitle = document.getElementById("playTitle");
+    const playDescription = document.getElementById("playDescription");
 
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+    let currentGame = null;
+    let questionIndex = 0;
+    let score = 0;
+    let answered = false;
 
-const gameContainer = document.getElementById("gameContainer");
-const playTitle = document.getElementById("playTitle");
-const playDescription = document.getElementById("playDescription");
+    const games = {
+        destiny: {
+            title: "اختار مصيرك 💣",
+            description: "كل اختيار هيحدد هتخرج من الموقف إزاي!",
+            questions: [
+                {
+                    text: "حماتك المستقبلية بتتصل بيك فجأة. تعمل إيه؟",
+                    answers: [
+                        { text: "أرد بثقة: أيوه يا ماما ❤️", points: 2 },
+                        { text: "أقفل وأقول الشبكة فصلت", points: 0 },
+                        { text: "أدي الموبايل لصاحبي", points: 1 }
+                    ]
+                },
+                {
+                    text: "حماتك عزماك على الغدا. هتقول إيه؟",
+                    answers: [
+                        { text: "تسلم إيد حضرتك من دلوقتي", points: 2 },
+                        { text: "هو في حد تاني جاي؟", points: 1 },
+                        { text: "أنا عامل دايت", points: 0 }
+                    ]
+                },
+                {
+                    text: "لقيت 17 مكالمة فائتة. تتصرف إزاي؟",
+                    answers: [
+                        { text: "أتصل وأعتذر بأدب", points: 2 },
+                        { text: "أبعت رسالة وأشرح اللي حصل", points: 1 },
+                        { text: "أغير اسمي وأهاجر", points: 0 }
+                    ]
+                },
+                {
+                    text: "حماتك بتسألك: إنت بتسأل عني ليه قليل؟",
+                    answers: [
+                        { text: "حقك عليا يا ماما، هتواصل أكتر", points: 2 },
+                        { text: "كنت مشغول شوية", points: 1 },
+                        { text: "أعمل نفسي مش سامع", points: 0 }
+                    ]
+                },
+                {
+                    text: "وصلت البيت ولقيت العيلة كلها مستنياك!",
+                    answers: [
+                        { text: "أسلم عليهم وأشاركهم القعدة", points: 2 },
+                        { text: "أقعد شوية وبعدها أستأذن", points: 1 },
+                        { text: "أقول نسيت حاجة في العربية وأهرب", points: 0 }
+                    ]
+                }
+            ],
+            results: [
+                {
+                    min: 0,
+                    max: 3,
+                    emoji: "🏃",
+                    title: "ملك الهروب الرسمي",
+                    text: "أنت محتاج تدريب قبل ما تدخل أي اجتماع عائلي 😂"
+                },
+                {
+                    min: 4,
+                    max: 7,
+                    emoji: "😅",
+                    title: "ناجي بأعجوبة",
+                    text: "بتعرف تنجو من بعض المواقف، بس لسه محتاج خبرة!"
+                },
+                {
+                    min: 8,
+                    max: 10,
+                    emoji: "👑",
+                    title: "دبلوماسي العيلة",
+                    text: "بتعرف تتصرف بهدوء وذكاء. العيلة في أمان معاك!"
+                }
+            ]
+        },
 
-const resultArea = document.getElementById("resultArea");
-const resultContainer = document.getElementById("resultContainer");
+        court: {
+            title: "محكمة الجوازات ⚖️",
+            description: "جاوب على القضية عشان المحكمة تطلع الحكم!",
+            questions: [
+                {
+                    text: "المتهم قال نازل يجيب حاجة ورجع بعد 5 ساعات. رأيك؟",
+                    answers: [
+                        { text: "كان بيجيبها من كوكب تاني 😂", points: 2 },
+                        { text: "يمكن قابل أصحابه واتأخر", points: 1 },
+                        { text: "براءة من غير تحقيق", points: 0 }
+                    ]
+                },
+                {
+                    text: "المتهمة قالت: أنا مش زعلانة، براحتك. تعمل إيه؟",
+                    answers: [
+                        { text: "أسألها بهدوء إيه اللي مضايقها", points: 2 },
+                        { text: "أحاول أصالحها وأفهم منها", points: 1 },
+                        { text: "أقول تمام وأكمل عادي", points: 0 }
+                    ]
+                },
+                {
+                    text: "المتهم نسي مناسبة مهمة. إيه الحل؟",
+                    answers: [
+                        { text: "اعتذار صادق وتعويض الموقف", points: 2 },
+                        { text: "نحتفل بيها في يوم تاني", points: 1 },
+                        { text: "أقول المناسبات دي اختراع", points: 0 }
+                    ]
+                },
+                {
+                    text: "المتهم قال: كنت ناوي أعمل مفاجأة!",
+                    answers: [
+                        { text: "فين المفاجأة يا فندم؟ هات الدليل!", points: 2 },
+                        { text: "نسمعه الأول وبعدها نحكم", points: 1 },
+                        { text: "نصدقه فورًا من غير دليل", points: 0 }
+                    ]
+                }
+            ],
+            results: [
+                {
+                    min: 0,
+                    max: 2,
+                    emoji: "🚨",
+                    title: "المحكمة مش مطمنة",
+                    text: "المتهم محتاج يجيب أدلة بدل الأعذار!"
+                },
+                {
+                    min: 3,
+                    max: 5,
+                    emoji: "⚖️",
+                    title: "حكم مع إيقاف التنفيذ",
+                    text: "فرصة جديدة للمتهم بشرط عدم تكرار المخالفات."
+                },
+                {
+                    min: 6,
+                    max: 8,
+                    emoji: "👨‍⚖️",
+                    title: "مستشار العلاقات العائلية",
+                    text: "حكمك متوازن! المحكمة رفعت الجلسة."
+                }
+            ]
+        },
 
-let currentGame = null;
-let currentQuestion = 0;
-let score = 0;
-let answersHistory = [];
-let gameFinished = false;
-let currentQuestions = [];
-let currentGameData = null;
+        trivia: {
+            title: "تحدي الفهلوة 🧠",
+            description: "اختبر معلوماتك في الأمثال والمواقف المصرية!",
+            questions: [
+                {
+                    text: "المثل «الباب يفوت جمل» معناه إيه؟",
+                    answers: [
+                        { text: "الجمل بيعرف يفتح الأبواب", points: 0 },
+                        { text: "نتساهل ونعدي الموقف", points: 1 },
+                        { text: "نجيب جمل للبيت", points: 0 }
+                    ]
+                },
+                {
+                    text: "صاحبك قال إنه في الطريق وهو لسه في البيت. نسمي ده إيه؟",
+                    answers: [
+                        { text: "إدارة وقت متقدمة", points: 0 },
+                        { text: "تأخير مصري أصيل 😂", points: 1 },
+                        { text: "سرعة الضوء", points: 0 }
+                    ]
+                },
+                {
+                    text: "معنى «كل تأخيرة وفيها خيرة» إيه؟",
+                    answers: [
+                        { text: "كل تأخير ممكن يكون وراه خير", points: 1 },
+                        { text: "التأخير مطلوب في كل حاجة", points: 0 },
+                        { text: "نأجل كل المواعيد", points: 0 }
+                    ]
+                },
+                {
+                    text: "لما حد يقولك «اللي اختشوا ماتوا»، المقصود إيه؟",
+                    answers: [
+                        { text: "الحياء اختفى عند بعض الناس", points: 1 },
+                        { text: "الناس راحت المستشفى", points: 0 },
+                        { text: "الامتحانات خلصت", points: 0 }
+                    ]
+                },
+                {
+                    text: "دخلت المطبخ جعان وخرجت بتغسل المواعين. إيه اللي حصل؟",
+                    answers: [
+                        { text: "مهمة جانبية ظهرت فجأة 😂", points: 1 },
+                        { text: "كسبت جائزة الطبخ", points: 0 },
+                        { text: "دي خطة الهروب", points: 0 }
+                    ]
+                }
+            ],
+            results: [
+                {
+                    min: 0,
+                    max: 1,
+                    emoji: "🤔",
+                    title: "محتاج تسخين",
+                    text: "راجع الأمثال المصرية وارجع جرّب تاني!"
+                },
+                {
+                    min: 2,
+                    max: 3,
+                    emoji: "😎",
+                    title: "فهلوة على القد",
+                    text: "فاهم الدنيا، بس لسه فيه شوية أمثال مستنياك."
+                },
+                {
+                    min: 4,
+                    max: 5,
+                    emoji: "🏆",
+                    title: "أسطورة القعدة المصرية",
+                    text: "أنت جاهز لأي قعدة عائلية وأي نقاش على القهوة!"
+                }
+            ]
+        },
 
+        brideQuiz: {
+            title: "إنتِ عروسة عاملة إزاي؟ 👰",
+            description: "جاوبي بصراحة عشان نكشف شخصيتك الكوميدية!",
+            questions: [
+                {
+                    text: "لو اتأخر عليكي في الميعاد، هتعملي إيه؟",
+                    answers: [
+                        { text: "أكلمه وأطمن عليه", points: 0 },
+                        { text: "أبعتله: الساعة كام عندك؟ 😂", points: 2 },
+                        { text: "أعمل جدول بالمخالفات", points: 3 }
+                    ]
+                },
+                {
+                    text: "لو نسي مناسبة مهمة، رد فعلك إيه؟",
+                    answers: [
+                        { text: "أفكره وأتكلم معاه بهدوء", points: 0 },
+                        { text: "أعاتبه عتاب خفيف", points: 2 },
+                        { text: "أفتح ملف المخالفات القديم", points: 3 }
+                    ]
+                },
+                {
+                    text: "لو قالك اختاري مكان الخروجة؟",
+                    answers: [
+                        { text: "أختار مكان ونتفق سوا", points: 0 },
+                        { text: "أقوله عندي اقتراحات كتير", points: 2 },
+                        { text: "أبعتله قائمة فيها 20 مكان", points: 3 }
+                    ]
+                },
+                {
+                    text: "لو قالك خمس دقايق وجاي؟",
+                    answers: [
+                        { text: "تمام، هستناك", points: 0 },
+                        { text: "أشغل نفسي بحاجة", points: 2 },
+                        { text: "أبدأ تحقيق الخمس دقايق", points: 3 }
+                    ]
+                }
+            ],
+            results: [
+                {
+                    min: 0,
+                    max: 3,
+                    emoji: "🌷",
+                    title: "العروسة الهادية",
+                    text: "بتحبي الهدوء والتفاهم، وبتفضلي الكلام الواضح."
+                },
+                {
+                    min: 4,
+                    max: 7,
+                    emoji: "✨",
+                    title: "العروسة صاحبة التفاصيل",
+                    text: "بتاخدي بالك من التفاصيل، وعندك حس فكاهي حاضر."
+                },
+                {
+                    min: 8,
+                    max: 12,
+                    emoji: "👑",
+                    title: "رئيسة لجنة التنظيم",
+                    text: "كل حاجة عندك ليها خطة وموعد وجدول متابعة 😂"
+                }
+            ]
+        },
 
-// ==========================================
-// 2. القائمة للموبايل
-// ==========================================
+        groomQuiz: {
+            title: "إنت عريس من أنهي نوع؟ 🤵",
+            description: "جاوب على المواقف واعرف أسلوبك!",
+            questions: [
+                {
+                    text: "لو شريكتك سألتك مالك؟ هتقول إيه؟",
+                    answers: [
+                        { text: "أحكيلها اللي مضايقني", points: 0 },
+                        { text: "أقولها محتاج شوية وقت وأتكلم بعدها", points: 1 },
+                        { text: "أقول مفيش حاجة وأنا واضح إني متضايق", points: 3 }
+                    ]
+                },
+                {
+                    text: "لو نسيت تجيب حاجة طلبتها منك؟",
+                    answers: [
+                        { text: "أعتذر وأحاول أصلح الموضوع", points: 0 },
+                        { text: "أقولها نسيت وأعوضها", points: 1 },
+                        { text: "أقولها ماكنتيش فكرتيني!", points: 3 }
+                    ]
+                },
+                {
+                    text: "لو عندك خروجة مع أصحابك واتغيرت الخطة؟",
+                    answers: [
+                        { text: "أتفق معاها على خطة مناسبة", points: 0 },
+                        { text: "أشرح الموقف ونشوف حل", points: 1 },
+                        { text: "أختفي وأرد بعدين", points: 3 }
+                    ]
+                },
+                {
+                    text: "لما يحصل خلاف، بتتصرف إزاي؟",
+                    answers: [
+                        { text: "أسمع وأتكلم بهدوء", points: 0 },
+                        { text: "أحتاج وقت أهدى وبعدها نتكلم", points: 1 },
+                        { text: "أعتبر إن السكوت هو الحل دايمًا", points: 3 }
+                    ]
+                }
+            ],
+            results: [
+                {
+                    min: 0,
+                    max: 3,
+                    emoji: "💚",
+                    title: "العريس المتفاهم",
+                    text: "بتحب الوضوح والتفاهم، ودي بداية كويسة لأي علاقة."
+                },
+                {
+                    min: 4,
+                    max: 7,
+                    emoji: "😎",
+                    title: "عريس على حسب الظروف",
+                    text: "بتحاول تتصرف، وممكن تستفيد من شوية تواصل أوضح."
+                },
+                {
+                    min: 8,
+                    max: 12,
+                    emoji: "📵",
+                    title: "العريس وضع الطيران",
+                    text: "الاختبار بيقول إنك محتاج تدي الحوار فرصة قبل ما تختفي 😂"
+                }
+            ]
+        },
 
-if (menuToggle && navLinks) {
-    menuToggle.addEventListener("click", function () {
-        navLinks.classList.toggle("open");
+        naggingQuiz: {
+            title: "مؤشر النكد الرسمي 🔥",
+            description: "اختبار هزار لردود أفعالك في المواقف اليومية!",
+            questions: [
+                {
+                    text: "حد رد عليك بكلمة «تمام». أول فكرة تيجي في بالك؟",
+                    answers: [
+                        { text: "تمام فعلًا ونكمل عادي", points: 0 },
+                        { text: "أسأل لو فيه حاجة مضايقاه", points: 1 },
+                        { text: "أحلل الكلمة وعلامة الترقيم", points: 3 }
+                    ]
+                },
+                {
+                    text: "حد اتأخر في الرد شوية. تعمل إيه؟",
+                    answers: [
+                        { text: "أكمل يومي عادي", points: 0 },
+                        { text: "أبعت رسالة أطمن", points: 1 },
+                        { text: "أراجع المحادثة كلها", points: 3 }
+                    ]
+                },
+                {
+                    text: "اتغيرت خطة الخروجة في آخر لحظة. رد فعلك؟",
+                    answers: [
+                        { text: "نشوف بديل مناسب", points: 0 },
+                        { text: "أتضايق شوية وأتكلم", points: 1 },
+                        { text: "أفتح اجتماع طارئ", points: 3 }
+                    ]
+                },
+                {
+                    text: "حد قالك: براحتك. هتعمل إيه؟",
+                    answers: [
+                        { text: "أسأله يقصد إيه لو مش واضح", points: 0 },
+                        { text: "أوضح وجهة نظري بهدوء", points: 1 },
+                        { text: "أكتب تقرير تحليلي عن الجملة", points: 3 }
+                    ]
+                }
+            ],
+            results: [
+                {
+                    min: 0,
+                    max: 3,
+                    emoji: "🌼",
+                    title: "رايق على الآخر",
+                    text: "بتحب الوضوح ومش بتقف عند كل تفصيلة."
+                },
+                {
+                    min: 4,
+                    max: 7,
+                    emoji: "🌶️",
+                    title: "توابل خفيفة",
+                    text: "بتاخد بالك من التفاصيل، بس بتقدر تعدي المواقف."
+                },
+                {
+                    min: 8,
+                    max: 12,
+                    emoji: "🔍",
+                    title: "محقق التفاصيل",
+                    text: "ولا كلمة بتعدي من غير تحليل! الاختبار بيهزر معاك 😂"
+                }
+            ]
+        }
+    };
 
-        const isOpen = navLinks.classList.contains("open");
+    // القائمة الخاصة بالموبايل
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", function () {
+            const opened = navLinks.classList.toggle("open");
+            menuToggle.textContent = opened ? "✕" : "☰";
+            menuToggle.setAttribute("aria-expanded", String(opened));
+        });
 
-        menuToggle.textContent = isOpen ? "✕" : "☰";
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
-    });
+        navLinks.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("open");
+                menuToggle.textContent = "☰";
+                menuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+    }
 
-    navLinks.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () {
-            navLinks.classList.remove("open");
-            menuToggle.textContent = "☰";
-            menuToggle.setAttribute("aria-expanded", "false");
+    // تشغيل أي لعبة من أزرار الموقع
+    document.querySelectorAll("[data-game]").forEach(function (button) {
+        button.addEventListener("click", function () {
+            startGame(button.dataset.game);
         });
     });
-}
 
+    function startGame(gameId) {
+        if (!games[gameId]) {
+            gameContainer.innerHTML =
+                '<div class="empty-state"><h3>اللعبة مش موجودة</h3><p>اختاري لعبة تانية.</p></div>';
+            return;
+        }
 
-// ==========================================
-// 3. قاعدة بيانات الألعاب
-// ==========================================
+        currentGame = games[gameId];
+        questionIndex = 0;
+        score = 0;
+        answered = false;
 
-const games = {
+        playTitle.textContent = currentGame.title;
+        playDescription.textContent = currentGame.description;
 
-    // --------------------------------------
-    // اللعبة الأولى: اختار مصيرك
-    // --------------------------------------
+        gameContainer.innerHTML = "";
+        renderQuestion();
 
-    destiny: {
-        title: "اختار مصيرك 💣",
-        description: "اختار تصرفك وشوف هتوصل لفين!",
-        type: "story",
-        questions: [
-            {
-                text: "أنت خارج مع أصحابك، وفجأة موبايلك رن... الاسم: حماتك المستقبلية! 😨",
-                answers: [
-                    {
-                        text: "أرد بكل ثقة: أيوه يا ماما ❤️",
-                        next: 1,
-                        points: 2,
-                        feedback: "يا سلام على الثقة! واضح إنك متدرب."
-                    },
-                    {
-                        text: "أقفل الموبايل وأعمل نفسي في نفق",
-                        next: 2,
-                        points: 0,
-                        feedback: "بدأنا الهروب الرسمي 😂"
-                    },
-                    {
-                        text: "أدي الموبايل لصاحبي يرد مكاني",
-                        next: 3,
-                        points: 1,
-                        feedback: "صاحبك دخل الاختبار من غير ما يعرف."
-                    }
-                ]
-            },
+        document.getElementById("playArea").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
 
-            {
-                text: "حماتك قالتلك: تعالى اتغدى عندنا، هنعملك أكلة حلوة. تعمل إيه؟",
-                answers: [
-                    {
-                        text: "أقولها تسلم إيدك من دلوقتي",
-                        next: 4,
-                        points: 2
-                    },
-                    {
-                        text: "أسأل: هو في حد تاني جاي؟",
-                        next: 5,
-                        points: 1
-                    },
-                    {
-                        text: "أقولها أنا عامل دايت",
-                        next: 6,
-                        points: 0
-                    }
-                ]
-            },
+    function renderQuestion() {
+        if (!currentGame || questionIndex >= currentGame.questions.length) {
+            finishGame();
+            return;
+        }
 
-            {
-                text: "رجعت البيت ولقيت 17 مكالمة فائتة. التصرف؟",
-                answers: [
-                    {
-                        text: "أرن وأقول كنت في اجتماع مهم",
-                        next: 7,
-                        points: 2
-                    },
-                    {
-                        text: "أبعت رسالة: الشبكة كانت فاصلة",
-                        next: 8,
-                        points: 1
-                    },
-                    {
-                        text: "أغير اسمي وأهاجر",
-                        next: 9,
-                        points: 0
-                    }
-                ]
-            },
+        answered = false;
 
-            {
-                text: "صاحبك رد وقال: ألو يا طنط، أنا معاه أهو... 😭",
-                answers: [
-                    {
-                        text: "أخد الموبايل وأكمل الحوار",
-                        next: 1,
-                        points: 2
-                    },
-                    {
-                        text: "أعمل نفسي مش سامع",
-                        next: 2,
-                        points: 0
-                    },
-                    {
-                        text: "أقوله هات الموبايل يا خائن!",
-                        next: 3,
-                        points: 1
-                    }
-                ]
-            },
+        const question = currentGame.questions[questionIndex];
+        const total = currentGame.questions.length;
+        const progress = ((questionIndex + 1) / total) * 100;
 
-            {
-                text: "وصلت بيت حماتك والأكل على السفرة. تقول إيه؟",
-                answers: [
-                    {
-                        text: "تسلم إيد حضرتك، ريحة الأكل تجنن",
-                        next: 10,
-                        points: 2
-                    },
-                    {
-                        text: "هو الأكل ده فيه بصل؟",
-                        next: 11,
-                        points: 1
-                    },
-                    {
-                        text: "أنا أكلت قبل ما أجي",
-                        next: 12,
-                        points: 0
-                    }
-                ]
-            },
+        gameContainer.innerHTML = `
+            <div class="question-meta">
+                <span>السؤال ${questionIndex + 1} من ${total}</span>
+                <span>⭐ نقاطك: ${score}</span>
+            </div>
 
-            {
-                text: "حماتك سألتك: إنت بتسأل عني ليه قليل؟",
-                answers: [
-                    {
-                        text: "التقصير مني يا ماما، حقك عليا",
-                        next: 10,
-                        points: 2
-                    },
-                    {
-                        text: "كنت مستني حضرتك تسألي",
-                        next: 11,
-                        points: 1
-                    },
-                    {
-                        text: "أعمل نفسي الموبايل فصل",
-                        next: 12,
-                        points: 0
-                    }
-                ]
-            },
+            <div class="progress-track">
+                <div class="progress-fill" style="width: ${progress}%"></div>
+            </div>
 
-            {
-                text: "حماتك قالت: طب خلاص، براحتك يا حبيبي!",
-                answers: [
-                    {
-                        text: "أقولها لأ يا ماما، أنا جاي مخصوص",
-                        next: 10,
-                        points: 2
-                    },
-                    {
-                        text: "أقول الحمد لله وأجري",
-                        next: 11,
-                        points: 1
-                    },
-                    {
-                        text: "أقفل المكالمة فورًا",
-                        next: 12,
-                        points: 0
-                    }
-                ]
-            },
+            <h3 class="question-title">${question.text}</h3>
 
-            {
-                text: "اكتشفت إن الاجتماع كان اجتماع عائلي، وكلهم بيسألوا عليك!",
-                answers: [
-                    {
-                        text: "أدخل المكالمة وأشارك عادي",
-                        next: 10,
-                        points: 2
-                    },
-                    {
-                        text: "أقول صوتكم مش واضح",
-                        next: 11,
-                        points: 1
-                    },
-                    {
-                        text: "أعمل وضع الطيران",
-                        next: 12,
-                        points: 0
-                    }
-                ]
-            },
+            <div class="answers-list" id="answersList"></div>
 
-            {
-                text: "صاحبك بيقولك: الشبكة عندي زي الفل! 😭",
-                answers: [
-                    {
-                        text: "أضحك وأعترف إني كنت بتهرب",
-                        next: 10,
-                        points: 2
-                    },
-                    {
-                        text: "أقوله طب ماشي يا عم",
-                        next: 11,
-                        points: 1
-                    },
-                    {
-                        text: "أعمل بلوك لصاحبي",
-                        next: 12,
-                        points: 0
-                    }
-                ]
-            },
+            <div id="feedback" class="feedback" hidden aria-live="polite"></div>
 
-            {
-                text: "أنت وصلت لمرحلة إنك لازم تواجه الموقف!",
-                answers: [
-                    {
-                        text: "أواجهه وأعتذر بأدب",
-                        next: 10,
-                        points: 2
-                    },
-                    {
-                        text: "أغير الموضوع",
-                        next: 11,
-                        points: 1
-                    },
-                    {
-                        text: "أختفي من على الكوكب",
-                        next: 12,
-                        points: 0
-                    }
-                ]
-            },
+            <div class="quiz-actions">
+                <span class="score-label">اختار إجابة واحدة 👇</span>
+                <button id="nextButton" class="btn btn-primary" type="button" hidden>
+                    ${questionIndex === total - 1 ? "اعرف النتيجة 🏆" : "السؤال التالي ←"}
+                </button>
+            </div>
+        `;
 
-            {
-                text: "حماتك ابتسمت وقالت: نورت يا حبيبي! كده أنت في الأمان.",
-                answers: [
-                    {
-                        text: "أشكرها وأقعد معاهم",
-                        next: "end",
-                        points: 2
-                    },
-                    {
-                        text: "أطلب الشاي وأغير الموضوع",
-                        next: "end",
-                        points: 1
-                    },
-                    {
-                        text: "أقولها أنا لازم أمشي",
-                        next: "end",
-                        points: 0
-                    }
-                ]
-            },
+        const answersList = document.getElementById("answersList");
 
-            {
-                text: "حماتك سألتك عن خططك للمستقبل. تجاوب إزاي؟",
-                answers: [
-                    {
-                        text: "أجاوب بوضوح واحترام",
-                        next: "end",
-                        points: 2
-                    },
-                    {
-                        text: "أقولها لسه بنشوف",
-                        next: "end",
-                        points: 1
-                    },
-                    {
-                        text: "أقولها أنا جاي أزور مش أقدم على وظيفة",
-                        next: "end",
-                        points: 0
-                    }
-                ]
-            },
+        question.answers.forEach(function (answer, index) {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "answer-btn";
+            button.textContent = answer.text;
 
-            {
-                text: "الموقف انتهى، بس العيلة كلها عايزة تعرف الحكاية!",
-                answers: [
-                    {
-                        text: "أحكي اللي حصل وأضحك معاهم",
-                        next: "end",
-                        points: 2
-                    },
-                    {
-                        text: "أقول حصل خير ونقفل الموضوع",
-                        next: "end",
-                        points: 1
-                    },
-                    {
-                        text: "أعلن انسحابي من العيلة",
-                        next: "end",
-                        points: 0
-                    }
-                ]
+            button.addEventListener("click", function () {
+                selectAnswer(index);
+            });
+
+            answersList.appendChild(button);
+        });
+
+        document.getElementById("nextButton").addEventListener("click", function () {
+            questionIndex++;
+            renderQuestion();
+        });
+    }
+
+    function selectAnswer(answerIndex) {
+        if (answered) return;
+
+        answered = true;
+
+        const question = currentGame.questions[questionIndex];
+        const chosenAnswer = question.answers[answerIndex];
+
+        score += chosenAnswer.points;
+
+        const answerButtons = document.querySelectorAll(".answer-btn");
+
+        answerButtons.forEach(function (button, index) {
+            button.disabled = true;
+
+            if (index === answerIndex) {
+                button.classList.add("correct");
             }
-        ],
+        });
 
-        results: [
-            {
-                max: 5,
-                emoji: "🏃",
-                title: "ملك الهروب الرسمي",
-                text: "أنت لو شوفت كلمة حماتي على الشاشة هتدخل وضع الطيران تلقائيًا 😂"
-            },
-            {
-                max: 11,
-                emoji: "😅",
-                title: "ناجي بأعجوبة",
-                text: "بتحاول تعدي المواقف بأقل خسائر، بس محتاج تتدرب على الثبات الانفعالي!"
-            },
-            {
-                max: 99,
-                emoji: "👑",
-                title: "دبلوماسي العيلة",
-                text: "بتعرف تتصرف وتهدي المواقف. ناقصك بدلة رسمية ومنصب وزير العلاقات العائلية!"
-            }
-        ]
-    },
+        const feedback = document.getElementById("feedback");
+        feedback.hidden = false;
 
-
-    // --------------------------------------
-    // اللعبة الثانية: محكمة الجوازات
-    // --------------------------------------
-
-    court: {
-        title: "محكمة الجوازات ⚖️",
-        description: "جاوب على أسئلة القضية عشان نطلع الحكم!",
-        type: "quiz",
-        questions: [
-            {
-                text: "المتهم قال إنه نازل يجيب حاجة ورجع بعد 5 ساعات. رأيك؟",
-                answers: [
-                    {
-                        text: "أكيد كان بيجيب الحاجة من كوكب تاني",
-                        points: 2,
-                        feedback: "تفسير مقنع جدًا يا سيادة المستشار 😂"
-                    },
-                    {
-                        text: "يمكن قابل أصحابه واتأخر",
-                        points: 1,
-                        feedback: "احتمال وارد في سجلات المحكمة."
-                    },
-                    {
-                        text: "براءة فورًا من غير تحقيق",
-                        points: 0,
-                        feedback: "المحكمة تطلب استئناف الحكم!"
-                    }
-                ]
-            },
-
-            {
-                text: "المتهمة قالت: أنا مش زعلانة، براحتك. القاضي يسأل: ده معناه إيه؟",
-                answers: [
-                    {
-                        text: "نطلب توضيح رسمي من المتهمة",
-                        points: 2
-                    },
-                    {
-                        text: "نجيب شوكولاتة ونتفاهم",
-                        points: 1
-                    },
-                    {
-                        text: "نقول تمام ونكمل لعب",
-                        points: 0
-                    }
-                ]
-            },
-
-            {
-                text: "المتهم نسي مناسبة مهمة. إيه الإجراء المناسب؟",
-                answers: [
-                    {
-                        text: "اعتذار صادق ومحاولة إصلاح الموقف",
-                        points: 2
-                    },
-                    {
-                        text: "نحتفل بالمناسبة بكرة",
-                        points: 1
-                    },
-                    {
-                        text: "نقول المناسبات دي اختراع",
-                        points: 0
-                    }
-                ]
-            },
-
-            {
-                text: "آخر سؤال: المتهم قال أنا كنت ناوي أعمل مفاجأة!",
-                answers: [
-                    {
-                        text: "فين المفاجأة يا فندم؟ هات الدليل!",
-                        points: 2
-                    },
-                    {
-                        text: "نمنحه فرصة يشرح",
-                        points: 1
-                    },
-                    {
-                        text: "نصدقه من غير أي دليل",
-                        points: 0
-                    }
-                ]
-            }
-        ],
-
-        results: [
-            {
-                max: 2,
-                emoji: "🚨",
-                title: "المحكمة مش مطمنة",
-                text: "المحكمة قررت إعادة التحقيق، والمتهم مطلوب منه يجيب دليل مش أعذار!"
-            },
-            {
-                max: 5,
-                emoji: "⚖️",
-                title: "حكم مع إيقاف التنفيذ",
-                text: "تم منح المتهم فرصة جديدة بشرط الالتزام وعدم تكرار المواقف الكوميدية."
-            },
-            {
-                max: 99,
-                emoji: "👨‍⚖️",
-                title: "مستشار العلاقات العائلية",
-                text: "حكمك متوازن وبتعرف تفرق بين الهزار والجد. المحكمة رفعت الجلسة!"
-            }
-        ]
-    },
-
-
-    // --------------------------------------
-    // اللعبة الثالثة: تحدي الفهلوة
-    // --------------------------------------
-
-    trivia: {
-        title: "تحدي الفهلوة 🧠",
-        description: "جاوب صح واجمع نقاطك!",
-        type: "quiz",
-        questions: [
-            {
-                text: "لو حد قالك: الباب يفوت جمل... المقصود غالبًا إيه؟",
-                answers: [
-                    {
-                        text: "إن الجمل بيعرف يفتح الأبواب",
-                        points: 0,
-                        feedback: "يا نهار أبيض 😂"
-                    },
-                    {
-                        text: "إننا نوسع صدرنا ونتساهل في الموقف",
-                        points: 1,
-                        feedback: "إجابة صحيحة!"
-                    },
-                    {
-                        text: "إننا نجيب جمل للبيت",
-                        points: 0
-                    }
-                ]
-            },
-
-            {
-                text: "لما صاحبك يقولك: أنا في الطريق، وهو لسه في البيت... نسمي ده إيه؟",
-                answers: [
-                    {
-                        text: "إدارة وقت متقدمة",
-                        points: 0
-                    },
-                    {
-                        text: "تأخير مصري أصيل 😂",
-                        points: 1,
-                        feedback: "بالظبط!"
-                    },
-                    {
-                        text: "سرعة الضوء",
-                        points: 0
-                    }
-                ]
-            },
-
-            {
-                text: "لو حد قالك: اللي اختشوا ماتوا، ده مثل بيشير لإيه؟",
-                answers: [
-                    {
-                        text: "إن الحياء اختفى عند بعض الناس",
-                        points: 1,
-                        feedback: "مظبوط!"
-                    },
-                    {
-                        text: "إن الناس لازم تروح المستشفى",
-                        points: 0
-                    },
-                    {
-                        text: "إن الاختبارات خلصت",
-                        points: 0
-                    }
-                ]
-            },
-
-            {
-                text: "صاحبك بيقولك: عندي خبر مهم، وبعدين يقولك الجو حر. تعمل إيه؟",
-                answers: [
-                    {
-                        text: "أطلب منه يدخل في الموضوع",
-                        points: 1
-                    },
-                    {
-                        text: "أكتب الخبر في الجرايد",
-                        points: 0
-                    },
-                    {
-                        text: "أعمل مؤتمر صحفي",
-                        points: 0
-                    }
-                ]
-            },
-
-            {
-                text: "لما حد يقولك: كل تأخيرة وفيها خيرة، إيه المعنى؟",
-                answers: [
-                    {
-                        text: "كل تأخير ممكن يكون وراه خير",
-                        points: 1
-                    },
-                    {
-                        text: "التأخير مطلوب في كل حاجة",
-                        points: 0
-                    },
-                    {
-                        text: "نأجل كل المواعيد",
-                        points: 0
-                    }
-                ]
-            },
-
-            {
-                text: "آخر سؤال: لو دخلت المطبخ جعان وخرجت بتغسل المواعين... إيه اللي حصل؟",
-                answers: [
-                    {
-                        text: "مهمة جانبية ظهرت فجأة",
-                        points: 1
-                    },
-                    {
-                        text: "أنا كسبت جائزة الطبخ",
-                        points: 0
-                    },
-                    {
-                        text: "ده جزء من خطة الهروب",
-                        points: 0
-                    }
-                ]
-            }
-        ],
-
-        results: [
-            {
-                max: 2,
-                emoji: "🤔",
-                title: "محتاج تسخين",
-                text: "الأسئلة المصرية لسه بتختبرك. العب تاني وهتجمع نقاط أكتر!"
-            },
-            {
-                max: 4,
-                emoji: "😎",
-                title: "فهلوة على القد",
-                text: "فاهم الدنيا، بس لسه في أمثال ومواقف مستنياك."
-            },
-            {
-                max: 99,
-                emoji: "🏆",
-                title: "أسطورة القعدة المصرية",
-                text: "أنت جاهز لأي قعدة عائلية وأي نقاش على القهوة. مبروك يا معلم!"
-            }
-        ]
-    },
-
-
-    // --------------------------------------
-    // الاختبار الرابع: شخصية العروسة
-    // --------------------------------------
-
-    brideQuiz: {
-        title: "إنتِ عروسة عاملة إزاي؟ 👰",
-        description: "جاوبي بصراحة عشان نكشف شخصيتك الكوميدية.",
-        type: "personality",
-        questions: [
-            {
-                text: "لو اتأخر عليكي في الميعاد، هتعملي إيه؟",
-                answers: [
-                    { text: "أكلمه وأطمن عليه", points: 0 },
-                    { text: "أبعتله: الساعة كام عندك؟ 😂", points: 2 },
-                    { text: "أعمل جدول بالمخالفات", points: 3 }
-                ]
-            },
-
+        const message = document.createElement("p");
+        message.textContent = chosenAnswer.
