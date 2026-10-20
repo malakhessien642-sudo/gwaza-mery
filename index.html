@@ -1,85 +1,413 @@
 
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جوازة ميري 😂💍</title>
-<link rel="stylesheet" href="style.css">
 
+    <title>جوازة ميري ❤️ | مكتب النجدة الزوجية</title>
+
+    <meta name="description"
+        content="جوازة ميري، موقع كوميدي مصري مليان قفشات ومواقف مضحكة واختبارات الجواز.">
+
+    <!-- ربط ملف CSS المسؤول عن التصميم -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ربط ملف JavaScript المسؤول عن التفاعلات -->
+    <script src="script.js" defer></script>
 </head>
 
 <body>
 
-    <header>
-        <h1>💍 جوازة ميري 💍</h1>
-        <p>أهلاً بيكي في أشهر مكتب جوازات في الوطن العربي 😂</p>
+    <!-- ==================== Navbar ==================== -->
+    <header class="navbar">
+
+        <a href="#home" class="logo">
+            جوازة <span>ميري</span> ❤️
+        </a>
+
+        <button class="menu-toggle" id="menuToggle"
+            aria-label="فتح القائمة" aria-expanded="false">
+            ☰
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#home">الرئيسية</a>
+            <a href="#brides">ركن العرايس</a>
+            <a href="#grooms">ركن العرسان</a>
+            <a href="#court">محكمة الجواز</a>
+            <a href="#advice">نصايح ميري</a>
+        </nav>
+
     </header>
 
     <main>
 
-        <section>
-            <h2>👰 نفسك تتجوزي؟</h2>
-            <p>متقلقيش، إحنا هنساعدك تلاقي عريس الأحلام... أو أي عريس وخلاص! 😂</p>
+        <!-- ==================== Hero Section ==================== -->
+        <section class="hero" id="home">
 
-            <button onclick="startMarriage()">
-                يلا نشوف العريس 😂
-            </button>
+            <div class="hero-content">
 
-            <p id="message"></p>
+                <p class="eyebrow">
+                    أهلاً بيك في مكتب النجدة الزوجية 😂
+                </p>
+
+                <h1>
+                    الحب جميل...
+                    <br>
+                    <span>بس مين هيغسل المواعين؟!</span>
+                </h1>
+
+                <p class="hero-description">
+                    هنا الضحك ملوش حدود، والقفشات مصرية أصيلة،
+                    وكل موقف محرج ليه حل... أو خناقة جديدة! 😂
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#quiz" class="btn btn-primary">
+                        اختبر حظك في الجواز
+                    </a>
+
+                    <a href="#court" class="btn btn-secondary">
+                        ادخل محكمة الجواز
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+
+                    <div class="stat">
+                        <strong>😂</strong>
+                        <span>ضحك للصبح</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>❤️</strong>
+                        <span>حب ودراما</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>🔥</strong>
+                        <span>قفشات نارية</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="hero-decoration" aria-hidden="true">
+                <span class="big-heart">♥</span>
+                <span class="floating-emoji emoji-one">😂</span>
+                <span class="floating-emoji emoji-two">💍</span>
+                <span class="floating-emoji emoji-three">💔</span>
+            </div>
+
         </section>
 
-        <section>
-            <h2>🤵 اختاري نوع العريس</h2>
+        <!-- ==================== Quiz Section ==================== -->
+        <section class="section" id="quiz">
 
-            <button onclick="chooseGroom('الغني 💰')">
-                الغني 💰
-            </button>
+            <div class="section-heading">
+                <p class="section-tag">يلا نكشف المستور</p>
 
-            <button onclick="chooseGroom('الرومانسي 🌹')">
-                الرومانسي 🌹
-            </button>
+                <h2>اختبر نفسك يا عريس يا عروسة 😏</h2>
 
-            <button onclick="chooseGroom('اللي بيسمع الكلام 🤫')">
-                اللي بيسمع الكلام 🤫
-            </button>
+                <p>
+                    اختار إجابتك وشوف مكتب ميري هيقول عليك إيه!
+                </p>
+            </div>
 
-            <button onclick="chooseGroom('ابن أمه 😂')">
-                ابن أمه 😂
-            </button>
+            <div class="cards-grid">
 
-            <p id="groomResult"></p>
+                <!-- الاختبار الأول -->
+                <article class="fun-card">
+
+                    <div class="card-icon">💸</div>
+
+                    <h3>لو شريكك قالك: معاك كام؟</h3>
+
+                    <p>اختار ردك بكل صراحة.</p>
+
+                    <div class="choice-list">
+
+                        <button class="quiz-option"
+                            data-result="واضح إنك داخل الجواز بخطة اقتصادية خمسية 😂">
+                            الفلوس في أمان
+                        </button>
+
+                        <button class="quiz-option"
+                            data-result="إنت كده فتحت ملف الضرائب بنفسك يا نجم! 😂">
+                            هقول الحقيقة
+                        </button>
+
+                        <button class="quiz-option"
+                            data-result="الرد الدبلوماسي وصل... بس التحقيق لسه مخلصش! 😭">
+                            مالكش دعوة
+                        </button>
+
+                    </div>
+
+                    <p class="quiz-result" aria-live="polite"></p>
+
+                </article>
+
+                <!-- الاختبار الثاني -->
+                <article class="fun-card">
+
+                    <div class="card-icon">🍗</div>
+
+                    <h3>آخر قطعة فراخ في الطبق!</h3>
+
+                    <p>هتعمل إيه في الموقف المصيري ده؟</p>
+
+                    <div class="choice-list">
+
+                        <button class="quiz-option"
+                            data-result="تضحية تاريخية تستحق وسام الشجاعة 😂">
+                            أسيبها لشريكي
+                        </button>
+
+                        <button class="quiz-option"
+                            data-result="القطعة اختفت، والتحقيقات مستمرة! 😂">
+                            أخطفها بسرعة
+                        </button>
+
+                        <button class="quiz-option"
+                            data-result="حل وسط محترم... بشرط إن النص يبقى أكبر! 😏">
+                            نقسمها بالنص
+                        </button>
+
+                    </div>
+
+                    <p class="quiz-result" aria-live="polite"></p>
+
+                </article>
+
+                <!-- الاختبار الثالث -->
+                <article class="fun-card">
+
+                    <div class="card-icon">📱</div>
+
+                    <h3>شريكك قالك: براحتك!</h3>
+
+                    <p>هل فعلًا براحتك؟</p>
+
+                    <div class="choice-list">
+
+                        <button class="quiz-option"
+                            data-result="إنت محتاج مترجم معتمد للهجة المصرية 😂">
+                            طبعًا براحتي
+                        </button>
+
+                        <button class="quiz-option"
+                            data-result="الخبرة بتتكلم... كلمة براحتك محتاجة دراسة! 😂">
+                            في حاجة غلط
+                        </button>
+
+                        <button class="quiz-option"
+                            data-result="تم تفعيل وضع تجنب الأزمات بنجاح! 🫡">
+                            أقول حاضر وخلاص
+                        </button>
+
+                    </div>
+
+                    <p class="quiz-result" aria-live="polite"></p>
+
+                </article>
+
+            </div>
+
         </section>
 
-        <section>
-            <h2>📋 شروط العروسة</h2>
-            <ul>
-                <li>يكون عنده شقة، مش مجرد أحلام.</li>
-                <li>يعرف الفرق بين عيد ميلادها ويوم عادي.</li>
-                <li>ميقولش: حاضر يا ماما قبل ما يسمع العروسة 😂.</li>
-                <li>يكون بيحب الضحك والجدعنة.</li>
-            </ul>
+        <!-- ==================== Brides Section ==================== -->
+        <section class="section alternate-section" id="brides">
+
+            <div class="section-heading">
+
+                <p class="section-tag">يا عروسة يا قمر</p>
+
+                <h2>ركن العرايس 👰🏻‍♀️</h2>
+
+                <p>
+                    اختاري موقفك وشوفي الحكم الكوميدي بتاع ميري.
+                </p>
+
+            </div>
+
+            <div class="choice-panel">
+
+                <h3>
+                    العريس قال: أنا نازل مع صحابي شوية!
+                </h3>
+
+                <p>رد فعلك هيكون إيه؟</p>
+
+                <div class="choice-list">
+
+                    <button class="bride-choice"
+                        data-result="اتفضل يا حبيبي، بس ابعت تقرير الرحلة كل ساعة 😂">
+                        اتفضل يا حبيبي ❤️
+                    </button>
+
+                    <button class="bride-choice"
+                        data-result="شوية دي بتبدأ ساعة وبتنتهي مع شروق الشمس! 😂">
+                        شوية يعني قد إيه؟
+                    </button>
+
+                    <button class="bride-choice"
+                        data-result="خروجة سعيدة، وأنا كمان عندي خروجة مع البنات! 😎">
+                        وأنا كمان خارجة!
+                    </button>
+
+                </div>
+
+                <p id="brideResult"
+                    class="interactive-result"
+                    aria-live="polite"></p>
+
+            </div>
+
+        </section>
+
+        <!-- ==================== Grooms Section ==================== -->
+        <section class="section" id="grooms">
+
+            <div class="section-heading">
+
+                <p class="section-tag">شد حيلك يا عريس</p>
+
+                <h2>ركن العرسان 🤵🏻</h2>
+
+                <p>
+                    اختبر قدرتك على التعامل مع المواقف الصعبة!
+                </p>
+
+            </div>
+
+            <div class="choice-panel">
+
+                <h3>
+                    العروسة سألتك: شايفني متغيرة؟
+                </h3>
+
+                <p>اختار إجابتك بحكمة يا بطل 😂</p>
+
+                <div class="choice-list">
+
+                    <button class="groom-choice"
+                        data-result="إجابة دبلوماسية... بس محتاجة مراجعة قبل الاعتماد! 😂">
+                        متغيرة للأحلى طبعًا
+                    </button>
+
+                    <button class="groom-choice"
+                        data-result="تم تسجيل الإجابة، وجاري تقييم مستوى الشجاعة! 😭">
+                        متغيرة إزاي يعني؟
+                    </button>
+
+                    <button class="groom-choice"
+                        data-result="مبروك يا نجم، اخترت طريق السلامة! 🫡">
+                        إنتِ قمر في كل حالاتك
+                    </button>
+
+                </div>
+
+                <p id="groomResult"
+                    class="interactive-result"
+                    aria-live="polite"></p>
+
+            </div>
+
+        </section>
+
+        <!-- ==================== Marriage Court ==================== -->
+        <section class="section court-section" id="court">
+
+            <div class="section-heading">
+
+                <p class="section-tag">القضاء الكوميدي</p>
+
+                <h2>محكمة الجواز ⚖️</h2>
+
+                <p>
+                    المحكمة منعقدة، والضحك هو الحكم النهائي!
+                </p>
+
+            </div>
+
+            <div class="court-box">
+
+                <div class="court-icon">⚖️</div>
+
+                <h3>عندك مشكلة زوجية كوميدية؟</h3>
+
+                <p>
+                    دوس على الزرار وخلي محكمة ميري تصدر حكمها
+                    في القضية بكل نزاهة وضحك 😂
+                </p>
+
+                <button class="btn btn-primary" id="verdictButton">
+                    إصدار الحكم
+                </button>
+
+                <p id="verdictResult"
+                    class="interactive-result"
+                    aria-live="polite"></p>
+
+            </div>
+
+        </section>
+
+        <!-- ==================== Advice Section ==================== -->
+        <section class="section alternate-section" id="advice">
+
+            <div class="section-heading">
+
+                <p class="section-tag">حكمة اليوم</p>
+
+                <h2>نصايح ميري الذهبية 💡</h2>
+
+                <p>
+                    نصايح خفيفة للضحك والتعامل الحلو بين الناس.
+                </p>
+
+            </div>
+
+            <div class="advice-box">
+
+                <span class="advice-icon">💌</span>
+
+                <p id="adviceText">
+                    قبل ما ترد وإنت متعصب، خد نفس وافتكر إن
+                    النقاش مش مسابقة مين يكسب فيها.
+                </p>
+
+                <button class="btn btn-secondary" id="adviceButton">
+                    عايز نصيحة تانية
+                </button>
+
+            </div>
+
         </section>
 
     </main>
 
-    <footer>
-        <p>صُنع بكل حب وضحك 😂❤️</p>
-        <p>جوازة ميري © 2026</p>
+    <!-- ==================== Footer ==================== -->
+    <footer class="footer">
+
+        <a href="#home" class="logo">
+            جوازة <span>ميري</span> ❤️
+        </a>
+
+        <p>
+            ضحك وقلب أحمر وقفشات من قلب الشارع المصري 😂
+        </p>
+
+        <p class="copyright">
+            جميع الحقوق محفوظة © جوازة ميري
+        </p>
+
     </footer>
 
-    <script>
-        function startMarriage() {
-            document.getElementById("message").innerText =
-                "جهزي نفسك يا عروسة! لجنة اختيار العريس بدأت التحقيق 😂💍";
-        }
-
-        function chooseGroom(type) {
-            document.getElementById("groomResult").innerText =
-                "اختيارك هو: " + type +
-                " 😂 يلا نشوف الحظ هيعمل معاكي إيه!";
-        }
-    </script>
-<script src="script.js"></script>
 </body>
+
 </html>
