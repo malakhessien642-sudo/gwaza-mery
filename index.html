@@ -6,276 +6,184 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>جوازة ميري ❤️🖤</title>
+    <title>جوازة ميري 💍😂</title>
 
+    <!-- ربط ملف CSS -->
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #10090c;
-            color: #fff0f3;
-            text-align: center;
-            line-height: 1.9;
-        }
-
-        header {
-            background: linear-gradient(135deg, #080808, #650016, #b00030);
-            color: white;
-            padding: 35px 15px;
-            border-bottom: 3px solid #ff1744;
-        }
-
-        header h1 {
-            font-size: 38px;
-            color: #ff294f;
-            text-shadow: 0 0 15px #ff1744;
-        }
-
-        main {
-            width: 92%;
-            max-width: 900px;
-            margin: 30px auto;
-        }
-
-        section {
-            background: linear-gradient(145deg, #211217, #120d10);
-            margin: 25px 0;
-            padding: 25px 18px;
-            border: 1px solid #8f1230;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px #ff17441c;
-        }
-
-        section h2 {
-            color: #ff365e;
-        }
-
-        button {
-            background: #c90036;
-            color: white;
-            border: 1px solid #ff5b79;
-            border-radius: 25px;
-            padding: 12px 20px;
-            margin: 7px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.25s;
-        }
-
-        button:hover {
-            background: #ff1744;
-            transform: translateY(-3px);
-            box-shadow: 0 0 15px #ff174466;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        ul li {
-            background: #30121d;
-            border-right: 4px solid #ff1744;
-            border-radius: 10px;
-            margin: 10px 0;
-            padding: 10px;
-        }
-
-        #message,
-        #groomResult,
-        #brideResult,
-        #braveResult,
-        #smartResult {
-            color: #ff6682;
-            font-weight: bold;
-            margin-top: 15px;
-        }
-
-        footer {
-            background: #080808;
-            border-top: 2px solid #b00030;
-            padding: 22px 10px;
-            color: #ff8da3;
-        }
-
-        .heart {
-            position: fixed;
-            top: -30px;
-            color: #ff1744;
-            pointer-events: none;
-            z-index: 1000;
-            animation: fall linear forwards;
-            text-shadow: 0 0 8px #ff1744;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-30px) rotate(0deg);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(110vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 29px;
-            }
-
-            section {
-                padding: 20px 12px;
-            }
-
-            button {
-                width: 90%;
-                max-width: 320px;
-            }
-        }
-    </style>
 </head>
 
 <body>
 
+    <!-- رأس الموقع -->
     <header>
-        <h1>💍 جوازة ميري ❤️</h1>
+        <h1>💍 جوازة ميري 💍</h1>
         <p>أشهر مكتب جوازات في الوطن العربي 😂</p>
-        <p>الحب أحمر.. والدراما سودا! ❤️🖤</p>
+        <p>عرايس وعرسان.. واللي خايف يخرج بره! 😹</p>
     </header>
 
     <main>
 
+        <!-- قسم الترحيب -->
         <section>
-            <h2>💌 أهلاً بيكم في مكتب الجوازات</h2>
-            <p>زهقت من سؤال «عقبالك يا حبيبي؟» 😂</p>
-            <p>اختار شريك حياتك وإحنا علينا الكوميديا!</p>
+            <h2>🎉 أهلاً بيكم في مكتب الجوازات</h2>
+
+            <p>
+                زهقت من سؤال "عقبالك يا حبيبي؟"
+                أو "هنفرح بيك إمتى؟" 😂
+            </p>
+
+            <p>إحنا هنا عشان نساعدك تلاقي شريك حياتك!</p>
 
             <button onclick="startMarriage()">
-                ابدأ رحلة الحب ❤️
+                ابدأ رحلة البحث عن الحب 💙
             </button>
 
             <p id="message"></p>
         </section>
 
+        <!-- قسم العرايس -->
         <section>
             <h2>👰 العروسة بتدوّر على عريس</h2>
-            <p>اختاري عريس الأحلام.. وربنا يستر 😹</p>
 
-            <button onclick="chooseGroom('الغني 💰')">الغني 💰</button>
-            <button onclick="chooseGroom('الرومانسي 🌹')">الرومانسي 🌹</button>
-            <button onclick="chooseGroom('اللي بيسمع الكلام 🤫')">بيسمع الكلام 🤫</button>
-            <button onclick="chooseGroom('ابن أمه 😂')">ابن أمه 😂</button>
+            <p>اختاري مواصفات عريس الأحلام يا عروسة! 😂</p>
+
+            <button onclick="chooseGroom('الغني 💰')">
+                الغني 💰
+            </button>
+
+            <button onclick="chooseGroom('الرومانسي 🌹')">
+                الرومانسي 🌹
+            </button>
+
+            <button onclick="chooseGroom('اللي بيسمع الكلام 🤫')">
+                بيسمع الكلام 🤫
+            </button>
+
+            <button onclick="chooseGroom('ابن أمه 😂')">
+                ابن أمه 😂
+            </button>
 
             <p id="groomResult"></p>
         </section>
 
+        <!-- شروط العروسة -->
         <section>
             <h2>📋 شروط العروسة الملكية</h2>
+
             <ul>
                 <li>يكون عنده شقة مش مجرد أحلام 😂</li>
                 <li>يفتكر المناسبات من غير تذكير.</li>
-                <li>يعرف إن كلمة «براحتك» محتاجة تفكير!</li>
+                <li>يعرف إن كلمة "براحتك" محتاجة تفكير!</li>
                 <li>يكون محترم وصريح وجدع.</li>
-                <li>يكون سند وشريك حقيقي في الحياة ❤️</li>
+                <li>يكون سند وشريك حقيقي في الحياة.</li>
             </ul>
         </section>
 
+        <!-- قسم العرسان -->
         <section>
             <h2>🤵 العريس بيدوّر على عروسة</h2>
+
             <p>اختار مواصفات شريكة حياتك يا عريس! 😎</p>
 
-            <button onclick="chooseBride('الحنينة ❤️')">الحنينة ❤️</button>
-            <button onclick="chooseBride('المستقلة 💼')">المستقلة 💼</button>
-            <button onclick="chooseBride('بتاعة الأكل 🍕')">بتحب الأكل 🍕</button>
-            <button onclick="chooseBride('الملكة 👑')">الملكة 👑</button>
+            <button onclick="chooseBride('الحنينة ❤️')">
+                الحنينة ❤️
+            </button>
+
+            <button onclick="chooseBride('المستقلة 💼')">
+                المستقلة 💼
+            </button>
+
+            <button onclick="chooseBride('بتاعة الأكل 🍕')">
+                بتحب الأكل 🍕
+            </button>
+
+            <button onclick="chooseBride('الملكة 👑')">
+                الملكة 👑
+            </button>
 
             <p id="brideResult"></p>
         </section>
 
+        <!-- شروط العريس -->
         <section>
             <h2>📋 شروط العريس المسكين 😂</h2>
+
             <ul>
                 <li>يكون صريح وواضح من البداية.</li>
-                <li>يعرف يعبّر عن مشاعره بدل كلمة «عادي».</li>
+                <li>يعرف يعبّر عن مشاعره بدل كلمة "عادي".</li>
                 <li>يكون مسؤول ويعرف معنى المشاركة.</li>
                 <li>يحترم طموح شريكة حياته وخصوصيتها.</li>
-                <li>يكون مستعد يسمع: «عايزة أقولك حاجة» 😂</li>
+                <li>يكون مستعد يسمع: "عايزة أقولك حاجة" 😂.</li>
             </ul>
         </section>
 
+        <!-- اختبار العريس -->
         <section>
             <h2>😂 اختبار العريس الشجاع</h2>
-            <p>لو شريكة حياتك قالتلك «إنت حر!» هتعمل إيه؟ 😹</p>
 
-            <button onclick="braveAnswer(1)">نتكلم ونفهم بعض 🤝</button>
-            <button onclick="braveAnswer(2)">أطلب لجنة تحكيم 😂</button>
+            <p>
+                لو شريكة حياتك قالتلك:
+                "إنت حر!".. هتعمل إيه يا بطل؟ 😹
+            </p>
+
+            <button onclick="braveAnswer(1)">
+                نتكلم ونفهم بعض 🤝
+            </button>
+
+            <button onclick="braveAnswer(2)">
+                أطلب لجنة تحكيم 😂
+            </button>
 
             <p id="braveResult"></p>
         </section>
 
+        <!-- اختبار العروسة -->
         <section>
             <h2>👑 اختبار العروسة الذكية</h2>
-            <p>العريس قالك «اختاري إنتِ هنخرج فين!» هتعملي إيه؟ 😂</p>
 
-            <button onclick="smartAnswer(1)">أختار المكان اللي بحبه 😎</button>
-            <button onclick="smartAnswer(2)">أي مكان.. وأرفض كل مكان 😂</button>
+            <p>
+                العريس قالك: "اختاري إنتِ هنخرج فين!"
+                هتعملي إيه؟ 😂
+            </p>
+
+            <button onclick="smartAnswer(1)">
+                أختار المكان اللي بحبه 😎
+            </button>
+
+            <button onclick="smartAnswer(2)">
+                أقوله: أي مكان.. وأرفض كل مكان 😂
+            </button>
 
             <p id="smartResult"></p>
         </section>
 
+        <!-- نصيحة اليوم -->
         <section>
-            <h2>💖 رسالة من القلب</h2>
+            <h2>💌 نصيحة مكتب الجوازات</h2>
+
             <p>
-                الحب مش مجرد كلام وقلوب حمرا،
-                الحب احترام ومودة ورحمة وتفاهم.
+                الجواز مش مجرد عريس وعروسة وصور حلوة،
+                الجواز مودة ورحمة واحترام وتفاهم.
             </p>
-            <p>اختار الشخص اللي تقدر تكون معاه على طبيعتك ❤️</p>
+
+            <p>
+                اختاروا الشخص اللي تكونوا معاه على طبيعتكم،
+                وتكونوا لبعض سند وفرحة 💙
+            </p>
         </section>
 
     </main>
 
+    <!-- نهاية الموقع -->
     <footer>
-        <p>❤️ جوازة ميري — الضحك علينا والجواز على الله 🖤</p>
+        <p>💙 جوازة ميري — الضحك علينا والجواز على الله 😂</p>
         <p>عرايس وعرسان.. الكل مرحب بيه! 💍</p>
         <p>جميع الحقوق محفوظة © 2026</p>
     </footer>
 
+    <!-- ربط ملف JavaScript -->
     <script src="script.js"></script>
 
-    <script>
-        // قلوب حمرا متحركة في الخلفية
-        function createHeart() {
-            const heart = document.createElement("span");
-
-            heart.className = "heart";
-            heart.textContent = Math.random() > 0.5 ? "♥" : "❤";
-
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.fontSize = (12 + Math.random() * 18) + "px";
-            heart.style.animationDuration = (4 + Math.random() * 5) + "s";
-
-            document.body.appendChild(heart);
-
-            setTimeout(function () {
-                heart.remove();
-            }, 9000);
-        }
-
-        setInterval(createHeart, 500);
-    </script>
-
 </body>
+
 </html>
