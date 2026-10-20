@@ -4,294 +4,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>جوازة ميري | الضحك مالوش كبير 😂</title>
-
-    <!-- ربط ملف CSS -->
+    <meta name="theme-color" content="#10080b">
+    <title>جوازة ميري 💍 | الضحك مالوش كبير</title>
     <link rel="stylesheet" href="style.css">
-
-   
+    <script src="script.js" defer></script>
 </head>
-
 <body>
 
-    <!-- شريط التنقل -->
-    <header class="navbar">
-        <a href="#home" class="logo">💍 جوازة <span>ميري</span></a>
+<header class="navbar">
+    <a class="logo" href="#home">💍 جوازة <span>ميري</span></a>
+    <button id="menuToggle" class="menu-toggle" aria-label="فتح القائمة">☰</button>
+    <nav id="navLinks" class="nav-links">
+        <a href="#home">الرئيسية</a>
+        <a href="#games">الألعاب</a>
+        <a href="#quizzes">الاختبارات</a>
+        <a href="#playArea">العب دلوقتي</a>
+    </nav>
+</header>
 
-        <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">
-            ☰
-        </button>
-
-        <nav class="nav-links" id="navLinks">
-            <a href="#home">الرئيسية</a>
-            <a href="#games">الألعاب</a>
-            <a href="#quizzes">الاختبارات</a>
-            <a href="#court">محكمة الجوازات</a>
-        </nav>
-    </header>
-
-    <main>
-
-        <!-- الصفحة الرئيسية -->
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <p class="eyebrow">⚖️ ممنوع دخول أصحاب القلوب الضعيفة</p>
-
-                <h1>
-                    أهلاً بيك في<br>
-                    <span>جوازة ميري</span>
-                </h1>
-
-                <p class="hero-description">
-                    هنا مفيش حب أعمى... هنا تحقيقات واختبارات
-                    وقرارات مصيرية ممكن تنهي الجوازة قبل ما تبدأ 😂
-                </p>
-
-                <div class="hero-buttons">
-                    <a href="#games" class="btn btn-primary">
-                        يلا نلعب 🔥
-                    </a>
-
-                    <a href="#quizzes" class="btn btn-secondary">
-                        اختبر شخصيتك 👀
-                    </a>
-                </div>
-
-                <div class="hero-stats">
-                    <div class="stat">
-                        <strong>😂</strong>
-                        <span>ضحك للصبح</span>
-                    </div>
-
-                    <div class="stat">
-                        <strong>🎮</strong>
-                        <span>ألعاب تفاعلية</span>
-                    </div>
-
-                    <div class="stat">
-                        <strong>💔</strong>
-                        <span>فضايح ببلاش</span>
-                    </div>
-                </div>
+<main>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="eyebrow">😂 الضحك مالوش كبير</span>
+            <h1>أهلاً بيك في<br><span>جوازة ميري</span></h1>
+            <p>
+                اختار إجاباتك بحكمة... عشان كل اختيار
+                ممكن يغيّر مصيرك في الحياة الزوجية 😂
+            </p>
+            <div class="hero-buttons">
+                <a class="btn btn-primary" href="#games">يلا نلعب 🔥</a>
+                <a class="btn btn-secondary" href="#quizzes">اختبر شخصيتك 👀</a>
             </div>
-        </section>
-
-        <!-- قسم الألعاب -->
-        <section class="section" id="games">
-            <div class="section-heading">
-                <p class="eyebrow">GAME ZONE</p>
-                <h2>اختار لعبتك يا عريس 😂</h2>
-                <p>كل لعبة ليها أسئلة وقرارات ونتيجة مختلفة!</p>
+            <div class="hero-stats">
+                <div><strong>🎮</strong><span>ألعاب تفاعلية</span></div>
+                <div><strong>🧠</strong><span>اختبارات مضحكة</span></div>
+                <div><strong>🏆</strong><span>نتائج فورية</span></div>
             </div>
+        </div>
+    </section>
 
-            <div class="games-grid">
+    <section class="section" id="games">
+        <div class="section-heading">
+            <span class="eyebrow">GAME ZONE</span>
+            <h2>اختار لعبتك يا عريس 😂</h2>
+            <p>كل لعبة فيها أسئلة واختيارات ونتيجة خاصة بيها.</p>
+        </div>
 
-                <!-- لعبة اختار مصيرك -->
-                <article class="game-card">
-                    <div class="card-icon">💣</div>
+        <div class="games-grid">
+            <article class="game-card">
+                <div class="card-icon">💣</div>
+                <h3>اختار مصيرك</h3>
+                <p>مواقف محرجة واختيارات هتحدد نهاية حكايتك!</p>
+                <button class="btn btn-primary" data-game="destiny">ابدأ المغامرة</button>
+            </article>
 
-                    <h3>اختار مصيرك</h3>
+            <article class="game-card">
+                <div class="card-icon">⚖️</div>
+                <h3>محكمة الجوازات</h3>
+                <p>اسمع القضية واختار الحكم المناسب للمتهم.</p>
+                <button class="btn btn-primary" data-game="court">ادخل المحكمة</button>
+            </article>
 
-                    <p>
-                        موقف محرج، وكل اختيار هيدخلك في حكاية
-                        جديدة. هتعرف تنجو ولا هتلبس؟
-                    </p>
+            <article class="game-card">
+                <div class="card-icon">🧠</div>
+                <h3>تحدي الفهلوة</h3>
+                <p>أمثال ومواقف مصرية. تقدر تجمع كام نقطة؟</p>
+                <button class="btn btn-primary" data-game="trivia">ابدأ التحدي</button>
+            </article>
+        </div>
+    </section>
 
-                    <button
-                        class="btn btn-primary"
-                        data-game="destiny"
-                        type="button">
-                        ابدأ المغامرة
-                    </button>
-                </article>
+    <section class="section section-dark" id="quizzes">
+        <div class="section-heading">
+            <span class="eyebrow">PERSONALITY TESTS</span>
+            <h2>اختبارات تكشف المستور 👀</h2>
+            <p>جاوب بصراحة، وإحنا مش مسؤولين عن الضحك 😂</p>
+        </div>
 
-                <!-- لعبة محكمة الجوازات -->
-                <article class="game-card">
-                    <div class="card-icon">⚖️</div>
+        <div class="games-grid">
+            <article class="game-card">
+                <div class="card-icon">👰</div>
+                <h3>إنتِ عروسة عاملة إزاي؟</h3>
+                <p>اعرفي شخصيتك في المواقف الزوجية الكوميدية.</p>
+                <button class="btn btn-primary" data-game="brideQuiz">اكشفي شخصيتك</button>
+            </article>
 
-                    <h3>محكمة الجوازات</h3>
+            <article class="game-card">
+                <div class="card-icon">🤵</div>
+                <h3>إنت عريس من أنهي نوع؟</h3>
+                <p>اختبار خفيف يكشف طريقة تعاملك مع المواقف.</p>
+                <button class="btn btn-primary" data-game="groomQuiz">اعرف حقيقتك</button>
+            </article>
 
-                    <p>
-                        اسمع القضية، جاوب على الأسئلة،
-                        وشوف الحكم النهائي على المتهم!
-                    </p>
+            <article class="game-card">
+                <div class="card-icon">🔥</div>
+                <h3>مؤشر النكد الرسمي</h3>
+                <p>اختبار كوميدي لردود أفعالك في المواقف اليومية.</p>
+                <button class="btn btn-primary" data-game="naggingQuiz">احسب المؤشر</button>
+            </article>
+        </div>
+    </section>
 
-                    <button
-                        class="btn btn-primary"
-                        data-game="court"
-                        type="button">
-                        ادخل المحكمة
-                    </button>
-                </article>
+    <section class="section play-section" id="playArea">
+        <div class="section-heading">
+            <span class="eyebrow">LET THE CHAOS BEGIN</span>
+            <h2 id="playTitle">مستعدين للفضايح؟ 😂</h2>
+            <p id="playDescription">اختار لعبة من فوق عشان تبدأ.</p>
+        </div>
 
-                <!-- لعبة تحدي الأمثال -->
-                <article class="game-card">
-                    <div class="card-icon">🧠</div>
-
-                    <h3>تحدي الفهلوة</h3>
-
-                    <p>
-                        أسئلة وأمثال ومواقف مصرية كوميدية.
-                        تقدر تجمع كام نقطة؟
-                    </p>
-
-                    <button
-                        class="btn btn-primary"
-                        data-game="trivia"
-                        type="button">
-                        ابدأ التحدي
-                    </button>
-                </article>
-
+        <div id="gameContainer" class="game-container" aria-live="polite">
+            <div class="empty-state">
+                <div class="empty-icon">🎮</div>
+                <h3>اللعبة مستنياك!</h3>
+                <p>اختار لعبة واضغط على زرار البداية.</p>
+                <a href="#games" class="btn btn-secondary">اختار لعبة</a>
             </div>
-        </section>
+        </div>
+    </section>
+</main>
 
-        <!-- قسم الاختبارات -->
-        <section class="section section-dark" id="quizzes">
-            <div class="section-heading">
-                <p class="eyebrow">PERSONALITY TESTS</p>
-                <h2>اختبارات تكشف المستور 👀</h2>
-                <p>جاوب بصراحة، إحنا مش مسؤولين عن النتيجة 😂</p>
-            </div>
+<footer class="footer">
+    <a class="logo" href="#home">💍 جوازة <span>ميري</span></a>
+    <p>معمول للضحك والهزار... أي تشابه مع الواقع مش مسؤوليتنا 😂</p>
+    <p>© 2026 جوازة ميري</p>
+    <a href="#home" class="back-to-top">⬆️ ارجع لفوق</a>
+</footer>
 
-            <div class="games-grid">
-
-                <article class="game-card quiz-card">
-                    <div class="card-icon">👰</div>
-
-                    <h3>إنتِ عروسة عاملة إزاي؟</h3>
-
-                    <p>
-                        عروسة هادية ولا مديرة منزل ولا لجنة تحقيق؟
-                        جاوبي واعرفي شخصيتك!
-                    </p>
-
-                    <button
-                        class="btn btn-primary"
-                        data-game="brideQuiz"
-                        type="button">
-                        اكشفي شخصيتك
-                    </button>
-                </article>
-
-                <article class="game-card quiz-card">
-                    <div class="card-icon">🤵</div>
-
-                    <h3>إنت عريس من أنهي نوع؟</h3>
-
-                    <p>
-                        رومانسي ولا بتاع صحاب ولا بتختفي وقت
-                        المسؤولية؟ الاختبار هيكشفك!
-                    </p>
-
-                    <button
-                        class="btn btn-primary"
-                        data-game="groomQuiz"
-                        type="button">
-                        اعرف حقيقتك
-                    </button>
-                </article>
-
-                <article class="game-card quiz-card">
-                    <div class="card-icon">🔥</div>
-
-                    <h3>مؤشر النكد الرسمي</h3>
-
-                    <p>
-                        اختبار كوميدي يعرفك بتتعامل مع المواقف
-                        إزاي، من غير أحكام يا جماعة!
-                    </p>
-
-                    <button
-                        class="btn btn-primary"
-                        data-game="naggingQuiz"
-                        type="button">
-                        احسب المؤشر
-                    </button>
-                </article>
-
-            </div>
-        </section>
-
-        <!-- مساحة تشغيل الألعاب والاختبارات -->
-        <section class="section play-section" id="playArea">
-            <div class="section-heading">
-                <p class="eyebrow">LET THE CHAOS BEGIN</p>
-                <h2 id="playTitle">مستعدين للفضايح؟ 😂</h2>
-                <p id="playDescription">
-                    اختار لعبة أو اختبار من فوق، وهتبدأ الأسئلة هنا.
-                </p>
-            </div>
-
-            <!-- JavaScript هيعرض الأسئلة والاختيارات هنا -->
-            <div id="gameContainer" class="game-container" aria-live="polite">
-                <div class="empty-state">
-                    <div class="empty-icon">🎮</div>
-                    <h3>اللعبة مستنياك!</h3>
-                    <p>اختار لعبتك وورينا هتتصرف إزاي.</p>
-
-                    <a href="#games" class="btn btn-secondary">
-                        اختار لعبة
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- قسم محكمة الجوازات -->
-        <section class="section court-section" id="court">
-            <div class="section-heading">
-                <p class="eyebrow">THE MARRIAGE COURT</p>
-                <h2>محكمة الجوازات ⚖️</h2>
-
-                <p>
-                    المحكمة مفتوحة للنظر في القضايا الزوجية
-                    الكوميدية. الحكم حسب إجاباتك!
-                </p>
-            </div>
-
-            <div class="court-box">
-                <div class="court-icon">👨‍⚖️</div>
-
-                <h3>القضية رقم 1001</h3>
-
-                <p>
-                    المتهم قال: «أنا نازل أجيب حاجة وراجع
-                    حالاً»... ورجع بعد 5 ساعات!
-                </p>
-
-                <button
-                    class="btn btn-primary"
-                    data-game="court"
-                    type="button">
-                    افتح القضية
-                </button>
-            </div>
-        </section>
-
-        <!-- قسم النتيجة -->
-        <section class="section result-section" id="resultArea" hidden>
-            <div id="resultContainer" class="result-container" aria-live="polite">
-                <!-- نتيجة اللعبة هتظهر هنا -->
-            </div>
-        </section>
-
-    </main>
-
-    <!-- الفوتر -->
-    <footer class="footer">
-        <a href="#home" class="logo">💍 جوازة <span>ميري</span></a>
-
-        <p>
-            معمول للضحك والهزار... أي تشابه مع الواقع مش مسؤوليتنا 😂
-        </p>
-
-        <p class="copyright">
-            © 2026 جوازة ميري | الضحك مالوش كبير
-        </p>
-
-        <a href="#home" class="back-to-top">⬆️ ارجع لفوق</a>
-    </footer>
-<script src="script.js" defer></script>
 </body>
 </html>
