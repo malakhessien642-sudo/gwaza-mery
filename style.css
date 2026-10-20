@@ -1,131 +1,844 @@
 
-/* إعدادات الصفحة الأساسية */
+/* ========================================
+   JAWAZA MERY - MAIN STYLE
+   Black & Neon Red Theme
+======================================== */
+
+/* 1. إعدادات الموقع الأساسية */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    --bg: #080808;
+    --bg-light: #111111;
+    --card-bg: #151010;
+    --red: #ff1744;
+    --red-dark: #c6002b;
+    --pink: #ff5c8a;
+    --white: #ffffff;
+    --gray: #bdbdbd;
+    --border: rgba(255, 23, 68, 0.25);
+    --glow: 0 0 15px rgba(255, 23, 68, 0.4);
+    --strong-glow: 0 0 30px rgba(255, 23, 68, 0.65);
+    --radius: 18px;
+    --transition: 0.3s ease;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb, #90caf9);
-    color: #153e75;
-    text-align: center;
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Cairo', sans-serif;
     line-height: 1.8;
-    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-/* رأس الموقع */
-header {
-    background: linear-gradient(135deg, #1565c0, #0d47a1);
-    color: white;
-    padding: 35px 15px;
-    box-shadow: 0 5px 15px #00000020;
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(255, 23, 68, 0.08),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(255, 23, 68, 0.06),
+            transparent 30%
+        );
 }
 
-header h1 {
-    font-size: 38px;
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: 4px;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* 2. شريط التنقل Navbar */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    min-height: 76px;
+    padding: 14px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background: rgba(8, 8, 8, 0.92);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(15px);
+}
+
+.logo {
+    font-size: 1.55rem;
+    font-weight: 900;
+    white-space: nowrap;
+    text-shadow: var(--glow);
+}
+
+.logo span {
+    color: var(--red);
+    text-shadow: 0 0 12px var(--red);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.nav-links a {
+    color: var(--gray);
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--red);
+    text-shadow: var(--glow);
+}
+
+.menu-toggle {
+    display: none;
+    color: var(--white);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 5px 12px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* 3. الواجهة الرئيسية Hero */
+
+.hero {
+    position: relative;
+    min-height: 640px;
+    padding: 90px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background:
+        linear-gradient(
+            120deg,
+            rgba(8, 8, 8, 0.97),
+            rgba(35, 0, 10, 0.8)
+        );
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    left: -120px;
+    bottom: -150px;
+    border-radius: 50%;
+    background: var(--red);
+    filter: blur(160px);
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    max-width: 720px;
+    animation: fadeUp 0.9s ease both;
+}
+
+.eyebrow,
+.section-tag {
+    color: var(--red);
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.eyebrow {
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(2.1rem, 5vw, 4rem);
+    line-height: 1.45;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: var(--red);
+    text-shadow: 0 0 20px rgba(255, 23, 68, 0.5);
+}
+
+.hero-description {
+    max-width: 620px;
+    color: var(--gray);
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+/* 4. الأزرار Buttons */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+        transform var(--transition),
+        background var(--transition),
+        box-shadow var(--transition);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+    color: var(--white);
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    box-shadow: var(--glow);
+}
+
+.btn-primary:hover {
+    box-shadow: var(--strong-glow);
+}
+
+.btn-secondary {
+    color: var(--white);
+    background: rgba(255, 23, 68, 0.06);
+    border-color: var(--red);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 23, 68, 0.15);
+    box-shadow: var(--glow);
+}
+
+/* 5. الإحصائيات */
+
+.hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gray);
+}
+
+.stat strong {
+    font-size: 1.7rem;
+}
+
+/* 6. القلوب والزخارف */
+
+.hero-decoration {
+    position: relative;
+    flex: 0 0 300px;
+    height: 320px;
+    display: grid;
+    place-items: center;
+}
+
+.big-heart {
+    color: var(--red);
+    font-size: 12rem;
+    line-height: 1;
+    text-shadow:
+        0 0 15px var(--red),
+        0 0 40px rgba(255, 23, 68, 0.7);
+    animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+.floating-emoji {
+    position: absolute;
+    font-size: 2.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.emoji-one {
+    top: 20px;
+    right: 10px;
+}
+
+.emoji-two {
+    bottom: 35px;
+    right: 15px;
+    animation-delay: 0.5s;
+}
+
+.emoji-three {
+    top: 60px;
+    left: 5px;
+    animation-delay: 1s;
+}
+
+/* 7. الأقسام العامة */
+
+.section {
+    position: relative;
+    padding: 90px 7%;
+}
+
+.alternate-section {
+    background: linear-gradient(
+        180deg,
+        #0c0a0a,
+        #12080b,
+        #0c0a0a
+    );
+    border-top: 1px solid rgba(255, 23, 68, 0.08);
+    border-bottom: 1px solid rgba(255, 23, 68, 0.08);
+}
+
+.section-heading {
+    max-width: 750px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.section-tag {
+    display: inline-block;
     margin-bottom: 10px;
 }
 
-header p {
-    font-size: 18px;
+.section-heading h2 {
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-weight: 900;
+    margin-bottom: 12px;
 }
 
-/* أقسام الموقع */
-main {
-    width: 90%;
-    max-width: 900px;
-    margin: 30px auto;
+.section-heading > p:last-child {
+    color: var(--gray);
 }
 
-section {
-    background: rgba(255, 255, 255, 0.95);
-    margin-bottom: 25px;
-    padding: 25px 20px;
-    border-radius: 20px;
-    box-shadow: 0 6px 18px #1565c020;
-    border: 2px solid #bbdefb;
+/* 8. كروت الاختبارات */
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-section h2 {
-    color: #0d47a1;
-    margin-bottom: 15px;
-    font-size: 25px;
+.fun-card,
+.choice-panel,
+.court-box,
+.advice-box {
+    background: linear-gradient(145deg, #181111, #0e0c0c);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+    transition:
+        transform var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
 }
 
-section p {
-    margin: 12px 0;
+.fun-card:hover,
+.choice-panel:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 23, 68, 0.7);
+    box-shadow: var(--glow);
 }
 
-/* الأزرار */
-button {
-    background: linear-gradient(135deg, #2196f3, #1565c0);
-    color: white;
-    border: none;
-    padding: 12px 22px;
-    margin: 8px;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: bold;
+.card-icon {
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 18px;
+    border-radius: 16px;
+    background: rgba(255, 23, 68, 0.1);
+    border: 1px solid var(--border);
+    font-size: 2rem;
+}
+
+.fun-card h3,
+.choice-panel h3,
+.court-box h3 {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.fun-card > p,
+.choice-panel > p,
+.court-box > p {
+    color: var(--gray);
+    margin-bottom: 18px;
+}
+
+/* 9. أزرار الاختيارات */
+
+.choice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.quiz-option,
+.bride-choice,
+.groom-choice {
+    width: 100%;
+    padding: 12px 15px;
+    text-align: right;
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 4px 10px #1565c030;
+    transition: var(--transition);
 }
 
-button:hover {
-    background: #0d47a1;
-    transform: translateY(-3px);
-    box-shadow: 0 7px 15px #1565c050;
+.quiz-option:hover,
+.bride-choice:hover,
+.groom-choice:hover {
+    color: var(--white);
+    background: rgba(255, 23, 68, 0.12);
+    border-color: var(--red);
+    transform: translateX(-4px);
 }
 
-/* نتيجة اختيار العريس */
-#message,
-#groomResult {
-    color: #0d47a1;
-    font-weight: bold;
-    font-size: 18px;
-    margin-top: 18px;
+.quiz-option:active,
+.bride-choice:active,
+.groom-choice:active {
+    transform: scale(0.98);
 }
 
-/* قائمة الشروط */
-ul {
-    list-style: none;
-    padding: 0;
+/* 10. نتيجة الاختبارات */
+
+.quiz-result,
+.interactive-result {
+    display: none;
+    margin-top: 20px;
+    padding: 14px;
+    color: #ffdce4;
+    background: rgba(255, 23, 68, 0.09);
+    border-right: 3px solid var(--red);
+    border-radius: 8px;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
 }
 
-ul li {
-    background: #e3f2fd;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 12px;
-    border-right: 5px solid #2196f3;
+.quiz-result.show,
+.interactive-result.show {
+    display: block;
+    animation: fadeUp 0.35s ease both;
 }
 
-/* نهاية الموقع */
-footer {
-    background: #0d47a1;
-    color: white;
-    padding: 20px;
-    margin-top: 35px;
+/* 11. ركن العرايس والعرسان */
+
+.choice-panel {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 35px;
 }
 
-/* مناسب للموبايل */
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 29px;
+.choice-panel .choice-list {
+    max-width: 550px;
+    margin: 24px auto 0;
+}
+
+.choice-panel .interactive-result {
+    text-align: right;
+}
+
+/* 12. محكمة الجواز */
+
+.court-section {
+    overflow: hidden;
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255, 23, 68, 0.08),
+            transparent 65%
+        );
+}
+
+.court-box {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 45px 30px;
+    border-color: rgba(255, 23, 68, 0.4);
+    box-shadow: var(--glow);
+}
+
+.court-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 12px rgba(255, 23, 68, 0.45));
+}
+
+.court-box .btn {
+    margin-top: 10px;
+}
+
+.court-box .interactive-result {
+    text-align: right;
+}
+
+/* 13. نصايح ميري */
+
+.advice-box {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.advice-icon {
+    display: inline-block;
+    font-size: 3rem;
+    margin-bottom: 12px;
+    animation: float 3s ease-in-out infinite;
+}
+
+#adviceText {
+    color: var(--white);
+    font-size: 1.15rem;
+    margin-bottom: 25px;
+}
+
+.advice-box .btn {
+    margin: 0 auto;
+}
+
+/* 14. Footer */
+
+.footer {
+    padding: 40px 7% 25px;
+    text-align: center;
+    background: #050505;
+    border-top: 1px solid var(--border);
+}
+
+.footer .logo {
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.footer > p {
+    color: var(--gray);
+    margin-bottom: 8px;
+}
+
+.footer .copyright {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.85rem;
+}
+
+/* 15. الحركات Animations */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
 
-    header p {
-        font-size: 16px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
     }
 
-    section {
-        padding: 20px 12px;
+    15% {
+        transform: scale(1.08);
     }
 
-    button {
-        width: 90%;
-        max-width: 300px;
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.05);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+/* 16. تصميم التابلت */
+
+@media (max-width: 1000px) {
+    .navbar {
+        padding-inline: 5%;
+    }
+
+    .nav-links {
+        gap: 13px;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+
+    .hero {
+        padding-inline: 6%;
+        gap: 20px;
+    }
+
+    .hero-decoration {
+        flex-basis: 220px;
+    }
+
+    .big-heart {
+        font-size: 9rem;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* 17. تصميم الموبايل */
+
+@media (max-width: 700px) {
+    html {
+        scroll-padding-top: 75px;
+    }
+
+    .navbar {
+        min-height: 68px;
+        padding: 10px 5%;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 0;
+    }
+
+    .nav-links.open {
+        display: flex;
+        animation: fadeUp 0.25s ease both;
+    }
+
+    .nav-links a {
+        padding: 11px 8px;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 65px 6% 55px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 9vw, 3rem);
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        margin-inline: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-stats {
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .stat {
+        font-size: 0.85rem;
+        gap: 5px;
+    }
+
+    .stat strong {
+        font-size: 1.4rem;
+    }
+
+    .hero-decoration {
+        flex: none;
+        width: 200px;
+        height: 190px;
+        margin-top: 5px;
+    }
+
+    .big-heart {
+        font-size: 8rem;
+    }
+
+    .floating-emoji {
+        font-size: 2rem;
+    }
+
+    .section {
+        padding: 65px 5%;
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .fun-card,
+    .choice-panel,
+    .court-box,
+    .advice-box {
+        padding: 23px 18px;
+    }
+
+    .choice-panel h3,
+    .fun-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .btn {
+        padding: 11px 17px;
+        font-size: 0.92rem;
+    }
+
+    .court-icon {
+        font-size: 3.2rem;
+    }
+
+    #adviceText {
+        font-size: 1rem;
+    }
+}
+
+/* 18. شاشات صغيرة جدًا */
+
+@media (max-width: 380px) {
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .hero-stats {
+        gap: 10px;
+    }
+
+    .stat {
+        flex-direction: column;
+    }
+}
+
+/* 19. احترام إعداد تقليل الحركة */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
     }
 }
