@@ -555,3 +555,46 @@ input:focus-visible {
     transition: none !important;
   }
 }
+
+/* توحيد شكل كل الأزرار */
+button {
+  font-family: Tahoma, Arial, sans-serif;
+  cursor: pointer;
+}
+
+/* الأزرار العادية */
+button:not(.category-btn):not(.menu-toggle):not(.dialog-close) {
+  background-color: #ff304f;
+  color: #ffffff;
+  border: 1px solid #ff304f;
+  border-radius: 8px;
+}
+
+/* أزرار تصنيفات المقالات */
+.category-btn {
+  background-color: #191919;
+  color: #ffffff;
+  border: 1px solid #ff304f;
+}
+
+/* التصنيف المختار */
+.category-btn.active,
+.category-btn:hover {
+  background-color: #ff304f;
+  color: #ffffff;
+}
+
+/* زر القائمة في الموبايل */
+.menu-toggle {
+  background-color: #232323;
+  color: #ff304f;
+  border: 1px solid #ff304f;
+}
+
+/* زر إغلاق المقال */
+.dialog-close {
+  background-color: #232323;
+  color: #ffffff;
+  border: 1px solid #ff304f;
+}
+
