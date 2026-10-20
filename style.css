@@ -1,0 +1,131 @@
+
+/* إعدادات الصفحة الأساسية */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb, #90caf9);
+    color: #153e75;
+    text-align: center;
+    line-height: 1.8;
+    min-height: 100vh;
+}
+
+/* رأس الموقع */
+header {
+    background: linear-gradient(135deg, #1565c0, #0d47a1);
+    color: white;
+    padding: 35px 15px;
+    box-shadow: 0 5px 15px #00000020;
+}
+
+header h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 18px;
+}
+
+/* أقسام الموقع */
+main {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+section {
+    background: rgba(255, 255, 255, 0.95);
+    margin-bottom: 25px;
+    padding: 25px 20px;
+    border-radius: 20px;
+    box-shadow: 0 6px 18px #1565c020;
+    border: 2px solid #bbdefb;
+}
+
+section h2 {
+    color: #0d47a1;
+    margin-bottom: 15px;
+    font-size: 25px;
+}
+
+section p {
+    margin: 12px 0;
+}
+
+/* الأزرار */
+button {
+    background: linear-gradient(135deg, #2196f3, #1565c0);
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    margin: 8px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px #1565c030;
+}
+
+button:hover {
+    background: #0d47a1;
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px #1565c050;
+}
+
+/* نتيجة اختيار العريس */
+#message,
+#groomResult {
+    color: #0d47a1;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 18px;
+}
+
+/* قائمة الشروط */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background: #e3f2fd;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 12px;
+    border-right: 5px solid #2196f3;
+}
+
+/* نهاية الموقع */
+footer {
+    background: #0d47a1;
+    color: white;
+    padding: 20px;
+    margin-top: 35px;
+}
+
+/* مناسب للموبايل */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 29px;
+    }
+
+    header p {
+        font-size: 16px;
+    }
+
+    section {
+        padding: 20px 12px;
+    }
+
+    button {
+        width: 90%;
+        max-width: 300px;
+    }
+}
