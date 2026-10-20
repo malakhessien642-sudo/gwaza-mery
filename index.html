@@ -2,133 +2,227 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#10080b">
-    <title>جوازة ميري 💍 | الضحك مالوش كبير</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#151515">
+  <meta name="description" content="جوازة ميري: ضحك ومواقف مصرية ونصايح للعرايس والعرسان والحياة الزوجية.">
+  <title>جوازة ميري | الضحك قبل الفرح وبعده</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
 
-<header class="navbar">
-    <a class="logo" href="#home">💍 جوازة <span>ميري</span></a>
-    <button id="menuToggle" class="menu-toggle" aria-label="فتح القائمة">☰</button>
-    <nav id="navLinks" class="nav-links">
-        <a href="#home">الرئيسية</a>
-        <a href="#games">الألعاب</a>
-        <a href="#quizzes">الاختبارات</a>
-        <a href="#playArea">العب دلوقتي</a>
+  <header class="site-header">
+    <a class="logo" href="#home">جوازة <span>ميري</span> 😂</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">☰</button>
+    <nav class="nav" id="nav">
+      <a href="#home">الرئيسية</a>
+      <a href="#brides">العرايس</a>
+      <a href="#grooms">العرسان</a>
+      <a href="#marriage">مواقف الجواز</a>
+      <a href="#advice">النصايح</a>
+      <a href="#stories">حكايات</a>
     </nav>
-</header>
+  </header>
 
-<main>
+  <main>
     <section class="hero" id="home">
-        <div class="hero-content">
-            <span class="eyebrow">😂 الضحك مالوش كبير</span>
-            <h1>أهلاً بيك في<br><span>جوازة ميري</span></h1>
-            <p>
-                اختار إجاباتك بحكمة... عشان كل اختيار
-                ممكن يغيّر مصيرك في الحياة الزوجية 😂
-            </p>
-            <div class="hero-buttons">
-                <a class="btn btn-primary" href="#games">يلا نلعب 🔥</a>
-                <a class="btn btn-secondary" href="#quizzes">اختبر شخصيتك 👀</a>
-            </div>
-            <div class="hero-stats">
-                <div><strong>🎮</strong><span>ألعاب تفاعلية</span></div>
-                <div><strong>🧠</strong><span>اختبارات مضحكة</span></div>
-                <div><strong>🏆</strong><span>نتائج فورية</span></div>
-            </div>
-        </div>
+      <div class="hero-content">
+        <span class="eyebrow">أهلاً بيك في عالم جوازة ميري 😂</span>
+        <h1>الجواز نصيب...<br>والضحك <span>واجب!</span></h1>
+        <p>
+          هنا هنضحك على المواقف اللي بنعيشها، ونحكي حكايات
+          العرايس والعرسان، وناخد نصايح تنفعنا في الحياة.
+        </p>
+        <a class="btn" href="#articles">يلا نضحك سوا</a>
+      </div>
+      <div class="hero-sticker" aria-label="وجه يضحك">😂</div>
     </section>
 
-    <section class="section" id="games">
-        <div class="section-heading">
-            <span class="eyebrow">GAME ZONE</span>
-            <h2>اختار لعبتك يا عريس 😂</h2>
-            <p>كل لعبة فيها أسئلة واختيارات ونتيجة خاصة بيها.</p>
-        </div>
-
-        <div class="games-grid">
-            <article class="game-card">
-                <div class="card-icon">💣</div>
-                <h3>اختار مصيرك</h3>
-                <p>مواقف محرجة واختيارات هتحدد نهاية حكايتك!</p>
-                <button class="btn btn-primary" data-game="destiny">ابدأ المغامرة</button>
-            </article>
-
-            <article class="game-card">
-                <div class="card-icon">⚖️</div>
-                <h3>محكمة الجوازات</h3>
-                <p>اسمع القضية واختار الحكم المناسب للمتهم.</p>
-                <button class="btn btn-primary" data-game="court">ادخل المحكمة</button>
-            </article>
-
-            <article class="game-card">
-                <div class="card-icon">🧠</div>
-                <h3>تحدي الفهلوة</h3>
-                <p>أمثال ومواقف مصرية. تقدر تجمع كام نقطة؟</p>
-                <button class="btn btn-primary" data-game="trivia">ابدأ التحدي</button>
-            </article>
-        </div>
+    <section class="welcome section">
+      <p class="welcome-label">رسالة من إدارة الموقع ❤️</p>
+      <h2>الضحك حلو... والتفاهم أحلى</h2>
+      <p>
+        بنهزر على المواقف، مش على قيمة الناس. كل علاقة فيها مواقف مضحكة،
+        والأجمل إن يبقى فيها احترام وتفاهم كمان.
+      </p>
     </section>
 
-    <section class="section section-dark" id="quizzes">
-        <div class="section-heading">
-            <span class="eyebrow">PERSONALITY TESTS</span>
-            <h2>اختبارات تكشف المستور 👀</h2>
-            <p>جاوب بصراحة، وإحنا مش مسؤولين عن الضحك 😂</p>
+    <section class="section" id="articles">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">اختاري مودك</span>
+          <h2>تتفرجي على إيه النهارده؟</h2>
         </div>
+      </div>
 
-        <div class="games-grid">
-            <article class="game-card">
-                <div class="card-icon">👰</div>
-                <h3>إنتِ عروسة عاملة إزاي؟</h3>
-                <p>اعرفي شخصيتك في المواقف الزوجية الكوميدية.</p>
-                <button class="btn btn-primary" data-game="brideQuiz">اكشفي شخصيتك</button>
-            </article>
+      <div class="category-list" id="categoryList">
+        <button class="category-btn active" data-filter="all">كل المحتوى</button>
+        <button class="category-btn" data-filter="brides">كوميديا العرايس 👰</button>
+        <button class="category-btn" data-filter="grooms">كوميديا العرسان 🤵</button>
+        <button class="category-btn" data-filter="marriage">مواقف الجواز 💍</button>
+        <button class="category-btn" data-filter="advice">نصايح ❤️</button>
+        <button class="category-btn" data-filter="jokes">إفيهات وضحك 😂</button>
+        <button class="category-btn" data-filter="stories">حكايات 📝</button>
+      </div>
 
-            <article class="game-card">
-                <div class="card-icon">🤵</div>
-                <h3>إنت عريس من أنهي نوع؟</h3>
-                <p>اختبار خفيف يكشف طريقة تعاملك مع المواقف.</p>
-                <button class="btn btn-primary" data-game="groomQuiz">اعرف حقيقتك</button>
-            </article>
+      <div class="search-box">
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="دوري على موضوع بتحبيه..."
+          aria-label="البحث في المقالات"
+        >
+        <span>🔎</span>
+      </div>
 
-            <article class="game-card">
-                <div class="card-icon">🔥</div>
-                <h3>مؤشر النكد الرسمي</h3>
-                <p>اختبار كوميدي لردود أفعالك في المواقف اليومية.</p>
-                <button class="btn btn-primary" data-game="naggingQuiz">احسب المؤشر</button>
-            </article>
-        </div>
+      <p class="results-count" id="resultsCount" aria-live="polite"></p>
+      <div class="article-grid" id="articleGrid"></div>
+      <p class="empty-message" id="emptyMessage" hidden>
+        ملقيناش موضوع بالكلمات دي 😅 جربي كلمة تانية.
+      </p>
     </section>
 
-    <section class="section play-section" id="playArea">
-        <div class="section-heading">
-            <span class="eyebrow">LET THE CHAOS BEGIN</span>
-            <h2 id="playTitle">مستعدين للفضايح؟ 😂</h2>
-            <p id="playDescription">اختار لعبة من فوق عشان تبدأ.</p>
+    <section class="featured-section section" id="brides">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">يا ليلة بيضا 😂</span>
+          <h2>عالم العرايس 👰</h2>
+          <p>من أول تجهيزات الفرح لحد اختيار لون الفوطة!</p>
         </div>
-
-        <div id="gameContainer" class="game-container" aria-live="polite">
-            <div class="empty-state">
-                <div class="empty-icon">🎮</div>
-                <h3>اللعبة مستنياك!</h3>
-                <p>اختار لعبة واضغط على زرار البداية.</p>
-                <a href="#games" class="btn btn-secondary">اختار لعبة</a>
-            </div>
-        </div>
+        <button class="text-btn" data-show-category="brides">كل حكايات العرايس ←</button>
+      </div>
+      <div class="teaser-grid">
+        <article class="teaser-card">
+          <span class="teaser-emoji">🛍️</span>
+          <h3>نزلت أجيب حاجة بسيطة</h3>
+          <p>العروسة قبل الشوبينج: هشتري حاجة واحدة. بعد الشوبينج: محتاجة مخزن!</p>
+          <button class="read-link" data-open-article="b1">اقري الموضوع ←</button>
+        </article>
+        <article class="teaser-card">
+          <span class="teaser-emoji">🏠</span>
+          <h3>معركة فرش الشقة</h3>
+          <p>لما كل حاجة تبقى بسيطة، بس لازم تتوافق مع لون الستارة والسجادة والحيطة!</p>
+          <button class="read-link" data-open-article="b2">اقري الموضوع ←</button>
+        </article>
+        <article class="teaser-card">
+          <span class="teaser-emoji">📸</span>
+          <h3>الصورة رقم 100</h3>
+          <p>الصورة حلوة، بس العروسة لسه بتدور على الزاوية اللي في خيالها.</p>
+          <button class="read-link" data-open-article="b3">اقري الموضوع ←</button>
+        </article>
+      </div>
     </section>
-</main>
 
-<footer class="footer">
-    <a class="logo" href="#home">💍 جوازة <span>ميري</span></a>
-    <p>معمول للضحك والهزار... أي تشابه مع الواقع مش مسؤوليتنا 😂</p>
-    <p>© 2026 جوازة ميري</p>
-    <a href="#home" class="back-to-top">⬆️ ارجع لفوق</a>
-</footer>
+    <section class="featured-section section" id="grooms">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ربنا معاك يا عريس 😂</span>
+          <h2>مذكرات العريس 🤵</h2>
+          <p>حكايات الميزانية والبدلة والتجهيزات.</p>
+        </div>
+        <button class="text-btn" data-show-category="grooms">كل حكايات العرسان ←</button>
+      </div>
+      <div class="teaser-grid">
+        <article class="teaser-card">
+          <span class="teaser-emoji">💸</span>
+          <h3>الميزانية راحت فين؟</h3>
+          <p>العريس عامل ميزانية على الورق، والواقع عنده رأي تاني خالص.</p>
+          <button class="read-link" data-open-article="g1">اقري الموضوع ←</button>
+        </article>
+        <article class="teaser-card">
+          <span class="teaser-emoji">👔</span>
+          <h3>مهمة اختيار البدلة</h3>
+          <p>داخل يشتري بدلة، خارج حافظ أسماء ألوان مكنش يعرف إنها موجودة!</p>
+          <button class="read-link" data-open-article="g2">اقري الموضوع ←</button>
+        </article>
+        <article class="teaser-card">
+          <span class="teaser-emoji">📱</span>
+          <h3>حاضر يا حبيبتي</h3>
+          <p>أشهر رد في التاريخ، بس المهم يكون فاهم المطلوب قبل ما يقول حاضر!</p>
+          <button class="read-link" data-open-article="g3">اقري الموضوع ←</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="advice-banner section" id="advice">
+      <span class="eyebrow">كلمتين من القلب ❤️</span>
+      <h2>الحب حلو... بس التفاهم أساس</h2>
+      <p>
+        اتكلموا بصراحة عن المصاريف، والمسؤوليات، والتوقعات.
+        مفيش حد بيقرأ الأفكار، والاتفاق الواضح بيوفر خلافات كتير.
+      </p>
+      <button class="btn" data-show-category="advice">اقرئي كل النصايح</button>
+    </section>
+
+    <section class="section" id="marriage">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">كل بيت وليه حكاية</span>
+          <h2>مواقف الخطوبة والجواز 💍</h2>
+          <p>مواقف يومية نضحك عليها ونتعلم منها.</p>
+        </div>
+        <button class="text-btn" data-show-category="marriage">شوفي المواقف ←</button>
+      </div>
+      <div class="teaser-grid">
+        <article class="teaser-card">
+          <span class="teaser-emoji">🍕</span>
+          <h3>ناكل إيه النهارده؟</h3>
+          <p>سؤال بسيط ممكن يتحول لاجتماع طارئ لمجلس إدارة البيت!</p>
+          <button class="read-link" data-open-article="m1">اقري الموضوع ←</button>
+        </article>
+        <article class="teaser-card">
+          <span class="teaser-emoji">💬</span>
+          <h3>أنا كويسة.. مفيش حاجة</h3>
+          <p>بدل التخمين، السؤال بهدوء والاستماع بجد ممكن يحلوا سوء تفاهم كبير.</p>
+          <button class="read-link" data-open-article="m2">اقري الموضوع ←</button>
+        </article>
+        <article class="teaser-card">
+          <span class="teaser-emoji">🧹</span>
+          <h3>مين عليه الدور؟</h3>
+          <p>تقسيم شغل البيت من البداية أريح من انتظار الطرف التاني يخمن لوحده.</p>
+          <button class="read-link" data-open-article="m3">اقري الموضوع ←</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="stories-banner section" id="stories">
+      <div>
+        <span class="eyebrow">الحكاية لسه مخلصتش</span>
+        <h2>عندك موقف يضحك؟ 😂</h2>
+        <p>ابعتي حكايتك من غير أسماء أو بيانات شخصية، وشاركي الضحك معانا.</p>
+      </div>
+      <a class="btn" href="mailto:hello@example.com?subject=موقف%20مضحك%20من%20جوازة%20ميري">اقترحي حكاية</a>
+    </section>
+
+    <section class="section mini-jokes" id="jokes">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">جرعة ضحك سريعة</span>
+          <h2>إفيهات على الماشي 😂</h2>
+        </div>
+      </div>
+      <div class="joke-list">
+        <blockquote>العروسة: عايزة فرح بسيط. <br>برضه العروسة: عندي ملف 85 صفحة للتنظيم! 😂</blockquote>
+        <blockquote>العريس: أنا بحسب كل حاجة. <br>الميزانية: طب احسبني أنا كمان! 😭</blockquote>
+        <blockquote>في أي خلاف، جربوا تتكلموا بدل ما كل واحد يكتب سيناريو كامل في دماغه. ❤️</blockquote>
+        <blockquote>أهم اتفاق قبل الجواز: مين هيختار الفيلم، ومين هينام قبل ما يخلص؟ 🍿</blockquote>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="logo" href="#home">جوازة <span>ميري</span> 😂</a>
+    <p>ضحك باحترام، ونصايح من القلب ❤️</p>
+    <p>© <span id="year"></span> جوازة ميري</p>
+    <p class="disclaimer">المحتوى الكوميدي للترفيه، والنصايح للتوعية العامة وليست بديلًا عن الاستشارة المتخصصة.</p>
+  </footer>
+
+  <dialog class="article-dialog" id="articleDialog">
+    <button class="dialog-close" id="dialogClose" aria-label="إغلاق">✕</button>
+    <div id="dialogContent"></div>
+    <button class="btn" id="shareArticle">شاركي الموضوع ❤️</button>
+  </dialog>
 
 </body>
 </html>
